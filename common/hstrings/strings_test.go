@@ -60,7 +60,13 @@ func BenchmarkCompileRegexp(b *testing.B) {
 
 
 
+/*
+	Code added for Assignment 1.
+*/
 
+// Main function for tests. It allows to execute 
+// statements before and/or after all tests are executed.
+// m.Run() runs all tests in the file.
 func TestMain(m *testing.M) {
 	exitCode := m.Run()
 	f, _ := os.Create("branch_coverage.txt")

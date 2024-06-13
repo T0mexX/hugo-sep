@@ -186,9 +186,15 @@ type Tuple struct {
 	Code added for Assignment 1:
 */
 
+// Contains the data relevant to branch coverage analysis.
 type BranchAnalyzer struct {
+	// Name of the analyzed file.
 	filename string
+	// Boolean array where index number correspond to a branch (idx = branchId).
+	// A value is set to true if the corresponding branch is reached.
 	branches  [19]bool
+	// Functions subject to analysis. Each function instance contains 
+	// starting and ending branch ids (the branch ids that are reachable in the function body).
 	functions [6]Function
 }
 
@@ -211,10 +217,13 @@ var ba = BranchAnalyzer{
 	},
 }
 
+// Called when the branch corresponding to parameter id.
 func (ba *BranchAnalyzer) reachedBranch(id int) {
 	ba.branches[id] = true
 }
 
+
+// Returns formatted branch analysis, both per-function and file wise.
 func (ba *BranchAnalyzer) getAnalysis() string {
 	var sb strings.Builder
 	totalCovered := 0
