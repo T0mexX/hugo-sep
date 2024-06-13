@@ -11,6 +11,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+
+
+
 package hstrings
 
 import (
@@ -18,9 +21,11 @@ import (
 	"regexp"
 	"strings"
 	"sync"
-
+	
 	"github.com/gohugoio/hugo/compare"
 )
+
+
 
 var _ compare.Eqer = StringEqualFold("")
 
@@ -39,23 +44,32 @@ func (s StringEqualFold) String() string {
 
 func (s StringEqualFold) Eq(s2 any) bool {
 	switch ss := s2.(type) {
-	case string:
+	case string: // branch id = 3
+		ba.reachedBranch(3)
 		return s.EqualFold(ss)
-	case fmt.Stringer:
+	case fmt.Stringer: // branch id = 4
+		ba.reachedBranch(4)
 		return s.EqualFold(ss.String())
 	}
-
-	return false
+	// branch id = 5
+	ba.reachedBranch(5)
+	return false 
 }
 
 // EqualAny returns whether a string is equal to any of the given strings.
 func EqualAny(a string, b ...string) bool {
 	for _, s := range b {
-		if a == s {
+		if a == s { // branch id = 6 (if condition evaluates to true at least once)
+			ba.reachedBranch(6)
 			return true
 		}
+		// (else)
+		// branch id = 7 (if condition evaluates to false at least once)
+		ba.reachedBranch(7)
 	}
-	return false
+	// branch id = 8 (if condition always evaluates to false)
+	ba.reachedBranch(8)
+	return false 
 }
 
 // regexpCache represents a cache of regexp objects protected by a mutex.
@@ -67,13 +81,20 @@ type regexpCache struct {
 func (rc *regexpCache) getOrCompileRegexp(pattern string) (re *regexp.Regexp, err error) {
 	var ok bool
 
-	if re, ok = rc.get(pattern); !ok {
+	if re, ok = rc.get(pattern); !ok { // branch id = 9
+		ba.reachedBranch(9)
 		re, err = regexp.Compile(pattern)
-		if err != nil {
+		if err != nil { // branch id = 10
+			ba.reachedBranch(10)
 			return nil, err
 		}
+		// (else)
+		// branch id = 11
+		ba.reachedBranch(11)
 		rc.set(pattern, re)
 	}
+	// (else)
+	// branch id = 12
 
 	return re, nil
 }
@@ -104,10 +125,17 @@ func GetOrCompileRegexp(pattern string) (re *regexp.Regexp, err error) {
 // and returns a boolean value.
 func InSlice(arr []string, el string) bool {
 	for _, v := range arr {
-		if v == el {
+		if v == el { // branch id = 13 (if condition evaluates to true at least once)
+			ba.reachedBranch(13)
 			return true
 		}
+		// (else)
+		// branch id = 14 (if condition evaluates to false at least once)
+		ba.reachedBranch(14)
 	}
+	// (else)
+	// branch id = 15 (if condition always evaluates to false)
+	ba.reachedBranch(15)
 	return false
 }
 
@@ -115,11 +143,18 @@ func InSlice(arr []string, el string) bool {
 // and returns a boolean value.
 // It uses strings.EqualFold to compare.
 func InSlicEqualFold(arr []string, el string) bool {
-	for _, v := range arr {
-		if strings.EqualFold(v, el) {
+	for _, v := range arr { 
+		if strings.EqualFold(v, el) { // branch id = 16 (if condition evaluates to true at least once)
+			ba.reachedBranch(16)
 			return true
 		}
+		// (else)
+		// branch id = 17 (if condition evaluates to false at least once)
+		ba.reachedBranch(17)
 	}
+	// (else)
+	// branch id = 18 (if condition always evaluates to false)
+	ba.reachedBranch(18)
 	return false
 }
 
@@ -129,15 +164,81 @@ func InSlicEqualFold(arr []string, el string) bool {
 // but only accept strings or fmt.Stringer.
 func ToString(v any) (string, bool) {
 	switch vv := v.(type) {
-	case string:
+	case string: // branch id = 0
+		ba.reachedBranch(0)
 		return vv, true
-	case fmt.Stringer:
+	case fmt.Stringer: // branch id = 1
+	ba.reachedBranch(1)
 		return vv.String(), true
 	}
-	return "", false
+	// branch id = 2
+	ba.reachedBranch(2)
+	return "", false 
 }
 
 type Tuple struct {
 	First  string
 	Second string
+}
+
+
+/*
+	Code added for Assignment 1:
+*/
+
+type BranchAnalyzer struct {
+	filename string
+	branches  [19]bool
+	functions [6]Function
+}
+
+type Function struct {
+	name string
+	startBranchId int8
+	untilId int8
+}
+
+var ba = BranchAnalyzer{
+	filename: "strings.go",
+	branches: [19]bool{},
+	functions: [6]Function{
+		{name: "ToString", startBranchId: 0, untilId: 3},
+		{name: "Eq", startBranchId: 3, untilId: 6},
+		{name: "EqualAny", startBranchId: 6, untilId: 9},
+		{name: "getOrCompileRegexp", startBranchId: 9, untilId: 12},
+		{name: "InSlice", startBranchId: 13, untilId: 16},
+		{name: "InSlicEqualFold", startBranchId: 16, untilId: 19},
+	},
+}
+
+func (ba *BranchAnalyzer) reachedBranch(id int) {
+	ba.branches[id] = true
+}
+
+func (ba *BranchAnalyzer) getAnalysis() string {
+	var sb strings.Builder
+	totalCovered := 0
+	totalBranches := len(ba.branches)
+	sb.WriteString("Branch coverage for file '" + ba.filename + "':\n")
+	for _, f := range ba.functions {
+		numCoveredPerFunc := 0
+		totalBranchesPerFunc := f.untilId - f.startBranchId
+		for _, b := range ba.branches[f.startBranchId:f.untilId] { if b { numCoveredPerFunc++ } }
+		totalCovered += numCoveredPerFunc
+		sb.WriteString(fmt.Sprintf(
+			"  function '%v'\n    - %v covered branches\n    - %v total branches\n    - %0.2f%% branch coverage\n",
+			f.name,
+			numCoveredPerFunc,
+			totalBranchesPerFunc,
+			100 * float32(numCoveredPerFunc) / float32(totalBranchesPerFunc),
+		))
+	}
+	sb.WriteString(fmt.Sprintf(
+		"  Total for functions under analysis\n    - %v covered branches\n    - %v total branches\n    - %0.2f%% branch coverage\n",
+		totalCovered,
+		totalBranches,
+		100 * float32(totalCovered) / float32(totalBranches),
+	))
+
+	return sb.String()
 }

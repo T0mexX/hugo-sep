@@ -14,6 +14,9 @@
 package hstrings
 
 import (
+	"bufio"
+	"fmt"
+	"os"
 	"regexp"
 	"testing"
 
@@ -54,3 +57,19 @@ func BenchmarkCompileRegexp(b *testing.B) {
 		regexp.MustCompile(`\d+`)
 	}
 }
+
+
+
+
+func TestMain(m *testing.M) {
+	exitCode := m.Run()
+	f, _ := os.Create("branch_coverage.txt")
+	defer f.Close()
+
+	w := bufio.NewWriter(f)
+	fmt.Fprintf(w, "%v", ba.getAnalysis())
+	w.Flush()
+
+	os.Exit(exitCode)
+}
+
