@@ -26,13 +26,13 @@ We can then format the output on the console with the following command.
 ```
 go tool cover -func .cover.out
 ```
-***ADD IMAGE***
+![](readme_images/coverage_console_output.png) <br><br>
 
 We can alternatevely use the following command to open a html page where we can visually check the statement coverage for each file.
 ```
 go tool cover -html .cover.out
 ```
-***ADD IMAGE***
+![](readme_images/html_coverage_example.png) <br><br>
 
 From the html GUI we were able to identify which packages / files lacked ***statement coverage*** and consequently thos that also lacked ***branch coverage***.
 We chose to improve coverage of the package `hstrings` with file `strings.go`.
