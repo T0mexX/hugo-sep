@@ -16,14 +16,14 @@ Branch coverage for file 'strings.go':
     - 3 total branches
     - 66.67% branch coverage
   function 'InSlice'
-    - 0 covered branches
+    - 3 covered branches
     - 3 total branches
-    - 0.00% branch coverage
+    - 100.00% branch coverage
   function 'InSlicEqualFold'
-    - 0 covered branches
+    - 3 covered branches
     - 3 total branches
-    - 0.00% branch coverage
+    - 100.00% branch coverage
   Total for functions under analysis
-    - 8 covered branches
+    - 14 covered branches
     - 19 total branches
-    - 42.11% branch coverage
+    - 73.68% branch coverage
