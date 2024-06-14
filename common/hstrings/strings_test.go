@@ -128,6 +128,7 @@ func TestForAssignments(t *testing.T) {
 			})
 		}
 	})
+	
 	t.Run("test for function 'InSlice'", func(t *testing.T) {
 		testCases := [6]struct {
 			array_str  []string
@@ -149,6 +150,30 @@ func TestForAssignments(t *testing.T) {
 			})
 		}
 	})
+
+	t.Run("test for function 'EqualAny'", func (t *testing.T) {
+		testCases:= [5]struct {
+			input1 string
+			input2 string
+			input3 string
+			input4 string
+			expected bool
+		} {
+			{input1: "random1", input2: "random1", expected: true},
+			{input1: "random1", input2: "raandom", input3: "random1", input4: "random2", expected: true},
+			{input1: "raandom1", input2: "raandom", input3: "random1", input4: "random2", expected: false},
+			{input1: "random1", input2: "1", input3: "2", input4:"3", expected: false},
+			{input1: "random1", input2: "random1", input3: "2", input4:"3", expected: true},
+		}
+
+		for _, testCase := range testCases {
+			t.Run(fmt.Sprintf("TestCase: %v", testCase), func (t *testing.T) {
+				boolOut := EqualAny(testCase.input1, testCase.input2, testCase.input3, testCase.input4)
+				assert.Equal(t, testCase.expected, boolOut)
+			})
+		}
+	})
+	
 	t.Run("test for function 'InSliceEqualFold'", func(t *testing.T) {
 		testCases := [6]struct {
 			array_str  []string

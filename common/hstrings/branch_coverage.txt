@@ -8,9 +8,9 @@ Branch coverage for file 'strings.go':
     - 3 total branches
     - 100.00% branch coverage
   function 'EqualAny'
-    - 0 covered branches
+    - 3 covered branches
     - 3 total branches
-    - 0.00% branch coverage
+    - 100.00% branch coverage
   function 'getOrCompileRegexp'
     - 2 covered branches
     - 3 total branches
@@ -24,6 +24,6 @@ Branch coverage for file 'strings.go':
     - 3 total branches
     - 100.00% branch coverage
   Total for functions under analysis
-    - 14 covered branches
+    - 17 covered branches
     - 19 total branches
-    - 73.68% branch coverage
+    - 89.47% branch coverage
