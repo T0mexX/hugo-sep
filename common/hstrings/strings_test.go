@@ -19,8 +19,9 @@ import (
 	"os"
 	"regexp"
 	"testing"
-	"github.com/stretchr/testify/assert"
+
 	qt "github.com/frankban/quicktest"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestStringEqualFold(t *testing.T) {
@@ -58,13 +59,11 @@ func BenchmarkCompileRegexp(b *testing.B) {
 	}
 }
 
-
-
 /*
 	Code added for Assignment 1.
 */
 
-// Main function for tests. It allows to execute 
+// Main function for tests. It allows to execute
 // statements before and/or after all tests are executed.
 // m.Run() runs all tests in the file.
 func TestMain(m *testing.M) {
@@ -79,29 +78,29 @@ func TestMain(m *testing.M) {
 	os.Exit(exitCode)
 }
 
+type StringerImplementation struct{ str string }
 
-type StringerImplementation struct {str string}
 func (si StringerImplementation) String() string { return si.str }
 
 func TestForAssignments(t *testing.T) {
 
-	t.Run("test for function 'ToString'", func (t *testing.T) {
+	t.Run("test for function 'ToString'", func(t *testing.T) {
 		testCases := [3]struct {
-			input any
-			expectedStr string
+			input        any
+			expectedStr  string
 			expectedBool bool
-		} {
+		}{
 			{input: "a string", expectedStr: "a string", expectedBool: true},
 			{
-				input: StringerImplementation{"This is a Stringer implementation."}, 
-				expectedStr: "This is a Stringer implementation.", 
+				input:        StringerImplementation{"This is a Stringer implementation."},
+				expectedStr:  "This is a Stringer implementation.",
 				expectedBool: true,
 			},
 			{input: 2, expectedStr: "", expectedBool: false},
 		}
 
 		for _, testCase := range testCases {
-			t.Run(fmt.Sprintf("TestCase: %v", testCase), func (t *testing.T) {
+			t.Run(fmt.Sprintf("TestCase: %v", testCase), func(t *testing.T) {
 				strOut, boolOut := ToString(testCase.input)
 				assert.Equal(t, testCase.expectedStr, strOut)
 				assert.Equal(t, testCase.expectedBool, boolOut)
@@ -109,12 +108,12 @@ func TestForAssignments(t *testing.T) {
 		}
 	})
 
-	t.Run("test for function 'Eq'", func (t *testing.T) {
+	t.Run("test for function 'Eq'", func(t *testing.T) {
 		funReceiver := StringEqualFold("a string")
-		testCases:= [5]struct {
-			input any
+		testCases := [5]struct {
+			input    any
 			expected bool
-		} {
+		}{
 			{input: "a string", expected: true},
 			{input: "a string but the wrong one", expected: false},
 			{input: "a string", expected: true},
@@ -123,11 +122,52 @@ func TestForAssignments(t *testing.T) {
 		}
 
 		for _, testCase := range testCases {
-			t.Run(fmt.Sprintf("TestCase: %v", testCase), func (t *testing.T) {
+			t.Run(fmt.Sprintf("TestCase: %v", testCase), func(t *testing.T) {
 				boolOut := funReceiver.Eq(testCase.input)
 				assert.Equal(t, testCase.expected, boolOut)
 			})
 		}
 	})
-}
+	t.Run("test for function 'InSlice'", func(t *testing.T) {
+		testCases := [6]struct {
+			array_str  []string
+			target_str string
+			expected   bool
+		}{
+			{array_str: []string{"a", "string", "jennifer"}, target_str: "jennifer", expected: true},
+			{array_str: []string{"eh", "io volevo", "te"}, target_str: "te", expected: true},
+			{array_str: []string{"a", "string", "jennifer"}, target_str: "big", expected: false},
+			{array_str: []string{}, target_str: "big", expected: false},
+			{array_str: []string{}, target_str: "", expected: false},
+			{array_str: []string{"     "}, target_str: "", expected: false},
+		}
 
+		for _, testCase := range testCases {
+			t.Run(fmt.Sprintf("TestCase: %v", testCase), func(t *testing.T) {
+				boolOut := InSlice(testCase.array_str, testCase.target_str)
+				assert.Equal(t, testCase.expected, boolOut)
+			})
+		}
+	})
+	t.Run("test for function 'InSliceEqualFold'", func(t *testing.T) {
+		testCases := [6]struct {
+			array_str  []string
+			target_str string
+			expected   bool
+		}{
+			{array_str: []string{"a", "string", "jennifer"}, target_str: "jennifer", expected: true},
+			{array_str: []string{"eh", "io volevo", "te"}, target_str: "te", expected: true},
+			{array_str: []string{"a", "string", "jennifer"}, target_str: "big", expected: false},
+			{array_str: []string{}, target_str: "big", expected: false},
+			{array_str: []string{}, target_str: "", expected: false},
+			{array_str: []string{"     "}, target_str: "", expected: false},
+		}
+
+		for _, testCase := range testCases {
+			t.Run(fmt.Sprintf("TestCase: %v", testCase), func(t *testing.T) {
+				boolOut := InSlicEqualFold(testCase.array_str, testCase.target_str)
+				assert.Equal(t, testCase.expected, boolOut)
+			})
+		}
+	})
+}
