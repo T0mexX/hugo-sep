@@ -5,8 +5,12 @@ import (
 	"fmt"
 	"os"
 	"testing"
+	"path/filepath"
 
 	"github.com/stretchr/testify/assert"
+	"github.com/spf13/afero"
+	"github.com/gohugoio/hugo/hugofs"
+	iofs "io/fs"
 )
 
 func TestMain(m *testing.M) {
@@ -25,12 +29,15 @@ func TestMain(m *testing.M) {
 func TestForAssignments(t *testing.T) {
 
 	t.Run("test for function 'Copy'", func(t *testing.T) {
+		fs := hugofs.Os
+		sfp := filepath.Join(jekyllRoot, entry.Name())
+		dfp := filepath.Join(dest, entry.Name())
 		testCases := [3]struct {
-			input        any
-			expectedStr  string
+			from string
+			to 	 string
 			expectedBool bool
 		}{
-			{input: "a string", expectedStr: "a string", expectedBool: true},
+			{from: "a string", expectedStr: "a string", expectedBool: true},
 			{
 				input:        StringerImplementation{"This is a Stringer implementation."},
 				expectedStr:  "This is a Stringer implementation.",
