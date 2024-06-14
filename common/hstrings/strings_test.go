@@ -19,7 +19,7 @@ import (
 	"os"
 	"regexp"
 	"testing"
-
+	"github.com/stretchr/testify/assert"
 	qt "github.com/frankban/quicktest"
 )
 
@@ -77,5 +77,32 @@ func TestMain(m *testing.M) {
 	w.Flush()
 
 	os.Exit(exitCode)
+}
+
+
+type StringerImplementation struct {}
+func (StringerImplementation) String() string { return "This is a stringer implementation." }
+
+func TestForAssignments(t *testing.T) {
+
+	t.Run("test for function 'ToString'", func (t *testing.T) {
+		testCases := [3]struct {
+			input any
+			expectedStr string
+			expectedBool bool
+		} {
+			{input: "a string", expectedStr: "a string", expectedBool: true},
+			{input: StringerImplementation{}, expectedStr: "This is a stringer implementation.", expectedBool: true},
+			{input: 2, expectedStr: "", expectedBool: false},
+		}
+
+		for _, testCase := range testCases {
+			t.Run(fmt.Sprintf("TestCase: %v", testCase), func (t *testing.T) {
+				strOut, boolOut := ToString(testCase.input)
+				assert.Equal(t, testCase.expectedStr, strOut)
+				assert.Equal(t, testCase.expectedBool, boolOut)
+			})
+		}
+	})
 }
 
