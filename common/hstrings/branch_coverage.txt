@@ -1,0 +1,29 @@
+Branch coverage for file 'strings.go':
+  function 'ToString'
+    - 0 covered branches
+    - 3 total branches
+    - 0.00% branch coverage
+  function 'Eq'
+    - 1 covered branches
+    - 3 total branches
+    - 33.33% branch coverage
+  function 'EqualAny'
+    - 0 covered branches
+    - 3 total branches
+    - 0.00% branch coverage
+  function 'getOrCompileRegexp'
+    - 2 covered branches
+    - 3 total branches
+    - 66.67% branch coverage
+  function 'InSlice'
+    - 0 covered branches
+    - 3 total branches
+    - 0.00% branch coverage
+  function 'InSlicEqualFold'
+    - 0 covered branches
+    - 3 total branches
+    - 0.00% branch coverage
+  Total for functions under analysis
+    - 3 covered branches
+    - 19 total branches
+    - 15.79% branch coverage

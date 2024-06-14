@@ -19,6 +19,7 @@ import (
 	"os"
 	"regexp"
 	"testing"
+	"github.com/stretchr/testify/assert"
 
 	qt "github.com/frankban/quicktest"
 )
