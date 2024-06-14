@@ -80,8 +80,8 @@ func TestMain(m *testing.M) {
 }
 
 
-type StringerImplementation struct {}
-func (StringerImplementation) String() string { return "This is a stringer implementation." }
+type StringerImplementation struct {str string}
+func (si StringerImplementation) String() string { return si.str }
 
 func TestForAssignments(t *testing.T) {
 
@@ -92,7 +92,11 @@ func TestForAssignments(t *testing.T) {
 			expectedBool bool
 		} {
 			{input: "a string", expectedStr: "a string", expectedBool: true},
-			{input: StringerImplementation{}, expectedStr: "This is a stringer implementation.", expectedBool: true},
+			{
+				input: StringerImplementation{"This is a Stringer implementation."}, 
+				expectedStr: "This is a Stringer implementation.", 
+				expectedBool: true,
+			},
 			{input: 2, expectedStr: "", expectedBool: false},
 		}
 
@@ -101,6 +105,27 @@ func TestForAssignments(t *testing.T) {
 				strOut, boolOut := ToString(testCase.input)
 				assert.Equal(t, testCase.expectedStr, strOut)
 				assert.Equal(t, testCase.expectedBool, boolOut)
+			})
+		}
+	})
+
+	t.Run("test for function 'Eq'", func (t *testing.T) {
+		funReceiver := StringEqualFold("a string")
+		testCases:= [5]struct {
+			input any
+			expected bool
+		} {
+			{input: "a string", expected: true},
+			{input: "a string but the wrong one", expected: false},
+			{input: "a string", expected: true},
+			{input: StringerImplementation{"a string but the wrong one"}, expected: false},
+			{input: 4, expected: false},
+		}
+
+		for _, testCase := range testCases {
+			t.Run(fmt.Sprintf("TestCase: %v", testCase), func (t *testing.T) {
+				boolOut := funReceiver.Eq(testCase.input)
+				assert.Equal(t, testCase.expected, boolOut)
 			})
 		}
 	})
