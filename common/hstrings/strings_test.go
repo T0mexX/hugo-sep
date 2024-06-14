@@ -45,8 +45,8 @@ func TestGetOrCompileRegexp(t *testing.T) {
 	re, err := GetOrCompileRegexp(`\d+`)
 	c.Assert(err, qt.IsNil)
 	c.Assert(re.MatchString("123"), qt.Equals, true)
-	// re1, err1 := getOrCompileRegexp(`.v;dfvlfvb;sa`)
-	// c.Assert(err1, qt.isNotNil)
+	// _, err1 := GetOrCompileRegexp(`.v;dfvlfvb;sa`)
+	// c.Assert(err1, qt.IsNotNil)
 }
 
 func BenchmarkGetOrCompileRegexp(b *testing.B) {

@@ -1,0 +1,13 @@
+Branch coverage for file 'copy.go':
+  function 'CopyFile'
+    - 0 covered branches
+    - 6 total branches
+    - 0.00% branch coverage
+  function 'CopyDir'
+    - 0 covered branches
+    - 12 total branches
+    - 0.00% branch coverage
+  Total for functions under analysis
+    - 0 covered branches
+    - 18 total branches
+    - 0.00% branch coverage
