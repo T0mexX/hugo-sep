@@ -1,10 +1,10 @@
 
 # Report for Assignment 1
+*** ADD SOMETHING TO FILL THE GAP***
 
 ## Project chosen: [hugo](https://github.com/gohugoio/hugo)
 
 
-Number of lines of code and the tool used to count it: <TODO>
 ##### Lines of code: 
 
 ![](readme_images/lines_of_code.png)
