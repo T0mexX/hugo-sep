@@ -40,7 +40,7 @@ We chose to improve coverage of the package `hstrings` with file `strings.go`.
 ##### Statement Coverage
 Full statement coverage: 
 
-Statement coverage ([complete file](cover/initial/cover_list.txt)):
+Statement coverage ([complete file](covers/initial/cover_list.txt)):
 ![](readme_images/total_statement_coverage.png)
 
 
