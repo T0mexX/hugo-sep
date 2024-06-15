@@ -38,9 +38,11 @@ func IsNumber(kind reflect.Kind) bool {
 func IsInt(kind reflect.Kind) bool {
 	switch kind {
 	case reflect.Int, reflect.Int8, reflect.Int16, reflect.Int32, reflect.Int64:
-		return true
+		ba.reachedBranch(2)
+		return true // branch id = 2 
 	default:
-		return false
+		ba.reachedBranch(3)
+		return false // branch id = 3
 	}
 }
 
@@ -60,9 +62,11 @@ func IsUint(kind reflect.Kind) bool {
 func IsFloat(kind reflect.Kind) bool {
 	switch kind {
 	case reflect.Float32, reflect.Float64:
-		return true
+		ba.reachedBranch(4)
+		return true // branch id = 4
 	default:
-		return false
+		ba.reachedBranch(5)
+		return false // branch id = 5
 	}
 }
 
@@ -185,7 +189,6 @@ func IsTime(tp reflect.Type) bool {
 	if tp == timeType {
 		return true
 	}
-
 	if tp.Implements(asTimeProviderType) {
 		return true
 	}
@@ -286,10 +289,10 @@ type BranchAnalyzer struct {
 	filename string
 	// Boolean array where index number correspond to a branch (idx = branchId).
 	// A value is set to true if the corresponding branch is reached.
-	branches  [2]bool
+	branches  [6]bool
 	// Functions subject to analysis. Each function instance contains 
 	// starting and ending branch ids (the branch ids that are reachable in the function body).
-	functions [1]Function
+	functions [3]Function
 }
 
 type Function struct {
@@ -300,9 +303,11 @@ type Function struct {
 
 var ba = BranchAnalyzer{
 	filename: "helpers.go",
-	branches: [2]bool{},
-	functions: [1]Function{
+	branches: [6]bool{},
+	functions: [3]Function{
 		{name: "IsUint", startBranchId: 0, untilId: 2},
+		{name: "IsInt", startBranchId: 2, untilId: 4},
+		{name: "IsFloat", startBranchId: 4, untilId: 6},
 	},
 }
 
