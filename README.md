@@ -193,16 +193,7 @@ func (s StringEqualFold) Eq(s2 any) bool {
 ![](readme_images/ToString_statement_coverage.png)
 
 
-<Function 1 name>
-
-<Show a patch (diff) or a link to a commit made in your forked repository that shows the instrumented code to gather coverage measurements>
-
-<Provide a screenshot of the coverage results output by the instrumentation>
-
-<Function 2 name>
-
-<Provide the same kind of information provided for Function 1>
-
+&nbsp;  
 ## Coverage improvement
 
 
@@ -216,7 +207,7 @@ func TestForAssignments(t *testing.T) {
 ```
 
 &nbsp;  
-### Alessio [[commit]()]
+### Alessio [[commit](https://github.com/T0mexX/hugo-sep/commit/b2c03cb40f90bf92bbbe7aae49b229a3927ee393)]
 Consider also the following declarations, that are needed to perform the tests.
 ```go
 type StringerImplementation struct{ str string }
