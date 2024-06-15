@@ -138,7 +138,7 @@ func TestMain(m *testing.M) {
 
 
 #### Setting Up
-We set up our `BranchAnalyzer` ([commit]()).
+We set up our `BranchAnalyzer` [[commit]()].
 ```go
 var ba = BranchAnalyzer{
 	filename: "strings.go",
