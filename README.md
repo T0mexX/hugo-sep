@@ -298,24 +298,8 @@ t.Run("test for function 'Eq'", func(t *testing.T) {
 ![](readme_images/Eq_statement_coverage_after.png)
 
 
-<The following is supposed to be repeated for each group member>
 
-<Group member name>
-
-<Test 1>
-
-<Show a patch (diff) or a link to a commit made in your forked repository that shows the new/enhanced test>
-
-<Provide a screenshot of the old coverage results (the same as you already showed above)>
-
-<Provide a screenshot of the new coverage results>
-
-<State the coverage improvement with a number and elaborate on why the coverage is improved>
-
-<Test 2>
-
-<Provide the same kind of information provided for Test 1>
-
+&nbsp;
 ### Overall
 
 <Provide a screenshot of the old coverage results by running an existing tool (the same as you already showed above)>
