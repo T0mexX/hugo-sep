@@ -1,0 +1,9 @@
+Branch coverage for file 'helpers.go':
+  function 'IsUint'
+    - 2 covered branches
+    - 2 total branches
+    - 100.00% branch coverage
+  Total for functions under analysis
+    - 2 covered branches
+    - 2 total branches
+    - 100.00% branch coverage
