@@ -21,7 +21,8 @@ import (
 	"reflect"
 	"sync"
 	"time"
-
+	"fmt"
+	"strings"
 	"github.com/gohugoio/hugo/common/htime"
 	"github.com/gohugoio/hugo/common/maps"
 	"github.com/gohugoio/hugo/common/types"
@@ -47,9 +48,11 @@ func IsInt(kind reflect.Kind) bool {
 func IsUint(kind reflect.Kind) bool {
 	switch kind {
 	case reflect.Uint, reflect.Uint8, reflect.Uint16, reflect.Uint32, reflect.Uint64:
-		return true
+		ba.reachedBranch(0)
+		return true	// branch id = 0 
 	default:
-		return false
+		ba.reachedBranch(1)
+		return false	// branch id = 1 
 	}
 }
 
@@ -271,4 +274,69 @@ func IsContextType(tp reflect.Type) bool {
 	return isContextCache.GetOrCreate(tp, func() bool {
 		return tp.Implements(contextInterface)
 	})
+}
+
+/*
+	Code added for Assignment 1:
+*/
+
+// Contains the data relevant to branch coverage analysis.
+type BranchAnalyzer struct {
+	// Name of the analyzed file.
+	filename string
+	// Boolean array where index number correspond to a branch (idx = branchId).
+	// A value is set to true if the corresponding branch is reached.
+	branches  [2]bool
+	// Functions subject to analysis. Each function instance contains 
+	// starting and ending branch ids (the branch ids that are reachable in the function body).
+	functions [1]Function
+}
+
+type Function struct {
+	name string
+	startBranchId int8
+	untilId int8
+}
+
+var ba = BranchAnalyzer{
+	filename: "helpers.go",
+	branches: [2]bool{},
+	functions: [1]Function{
+		{name: "IsUint", startBranchId: 0, untilId: 2},
+	},
+}
+
+// Called when the branch corresponding to parameter id.
+func (ba *BranchAnalyzer) reachedBranch(id int) {
+	ba.branches[id] = true
+}
+
+
+// Returns formatted branch analysis, both per-function and file wise.
+func (ba *BranchAnalyzer) getAnalysis() string {
+	var sb strings.Builder
+	totalCovered := 0
+	totalBranches := len(ba.branches)
+	sb.WriteString("Branch coverage for file '" + ba.filename + "':\n")
+	for _, f := range ba.functions {
+		numCoveredPerFunc := 0
+		totalBranchesPerFunc := f.untilId - f.startBranchId
+		for _, b := range ba.branches[f.startBranchId:f.untilId] { if b { numCoveredPerFunc++ } }
+		totalCovered += numCoveredPerFunc
+		sb.WriteString(fmt.Sprintf(
+			"  function '%v'\n    - %v covered branches\n    - %v total branches\n    - %0.2f%% branch coverage\n",
+			f.name,
+			numCoveredPerFunc,
+			totalBranchesPerFunc,
+			100 * float32(numCoveredPerFunc) / float32(totalBranchesPerFunc),
+		))
+	}
+	sb.WriteString(fmt.Sprintf(
+		"  Total for functions under analysis\n    - %v covered branches\n    - %v total branches\n    - %0.2f%% branch coverage\n",
+		totalCovered,
+		totalBranches,
+		100 * float32(totalCovered) / float32(totalBranches),
+	))
+
+	return sb.String()
 }

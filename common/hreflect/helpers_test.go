@@ -14,12 +14,16 @@
 package hreflect
 
 import (
+	"bufio"
 	"context"
+	"fmt"
+	"os"
 	"reflect"
 	"testing"
 	"time"
 
 	qt "github.com/frankban/quicktest"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestIsTruthful(t *testing.T) {
@@ -120,4 +124,50 @@ func BenchmarkGetMethodByName(b *testing.B) {
 			_ = GetMethodByName(v, method)
 		}
 	}
+}
+
+/*
+	Code added for Assignment 1.
+*/
+
+// Main function for tests. It allows to execute
+// statements before and/or after all tests are executed.
+// m.Run() runs all tests in the file.
+func TestMain(m *testing.M) {
+	exitCode := m.Run()
+	f, _ := os.Create("branch_coverage.txt")
+	defer f.Close()
+
+	w := bufio.NewWriter(f)
+	fmt.Fprintf(w, "%v", ba.getAnalysis())
+	w.Flush()
+
+	os.Exit(exitCode)
+}
+
+func TestForAssignments(t *testing.T) {
+
+	t.Run("test for function 'IsUint'", func(t *testing.T) {
+
+		testCases := [7]struct {
+			input    reflect.Kind
+			expected bool
+		}{
+
+			{input: reflect.Uint16, expected: true},
+			{input: reflect.Uint32, expected: true},
+			{input: reflect.Uint8, expected: true},
+			{input: reflect.Uint64, expected: true},
+			{input: reflect.Int, expected: false},
+			{input: reflect.Bool, expected: false},
+			{input: reflect.Chan, expected: false},
+		}
+
+		for _, testCase := range testCases {
+			t.Run(fmt.Sprintf("TestCase: %v", testCase), func(t *testing.T) {
+				boolOut := IsUint(testCase.input)
+				assert.Equal(t, testCase.expected, boolOut)
+			})
+		}
+	})
 }
