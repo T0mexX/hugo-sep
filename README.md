@@ -43,8 +43,7 @@ Statement coverage ([complete file](covers/initial/cover_list.txt)):
 ![](readme_images/total_statement_coverage.png)
 
 
-<Show the coverage results provided by the existing tool with a screenshot>
-
+&nbsp;  
 ## Your own coverage tool
 
 Our own coverage tool focuses on branch coverage. We assigned a branch id that uniquely identifies the branch inside the packet (which usually means the file), so that each packet and its tests can be run independently.
@@ -127,10 +126,6 @@ func TestMain(m *testing.M) {
 }
 ```
 
-<The following is supposed to be repeated for each group member>
-
-<Group member name>
-
 ***
 &nbsp;  
 
@@ -143,7 +138,7 @@ func TestMain(m *testing.M) {
 
 
 #### Setting Up
-We set up our `BranchAnalyzer` ([commit]()).
+We set up our `BranchAnalyzer` [[commit]()].
 ```go
 var ba = BranchAnalyzer{
 	filename: "strings.go",
@@ -193,16 +188,7 @@ func (s StringEqualFold) Eq(s2 any) bool {
 ![](readme_images/ToString_statement_coverage.png)
 
 
-<Function 1 name>
-
-<Show a patch (diff) or a link to a commit made in your forked repository that shows the instrumented code to gather coverage measurements>
-
-<Provide a screenshot of the coverage results output by the instrumentation>
-
-<Function 2 name>
-
-<Provide the same kind of information provided for Function 1>
-
+&nbsp;  
 ## Coverage improvement
 
 
@@ -215,7 +201,16 @@ func TestForAssignments(t *testing.T) {
 }
 ```
 
-### Alessio [[commit]()]
+***
+&nbsp;  
+### Alessio [[commit](https://github.com/T0mexX/hugo-sep/commit/b2c03cb40f90bf92bbbe7aae49b229a3927ee393)]
+Consider also the following declarations, that are needed to perform the tests.
+```go
+type StringerImplementation struct{ str string }
+func (si StringerImplementation) String() string { return si.str }
+```
+
+&nbsp;  
 ***Function1:*** `ToString` &nbsp;  
 ***File:*** `common/hstrings/strings.go`
 
@@ -284,9 +279,89 @@ t.Run("test for function 'Eq'", func(t *testing.T) {
 
 &nbsp;  
 #### Coverage Improvements
+**Considering only these 2 functions**, we went from *1/6* (*16.67%*) to *6/6* (*100%*) branches covered. Improving these 2 functions branch coverage concerned about passing parameter of different types. By defining test cases with parameter of type `string`, `Stringer` and a third different type (in our case `int`), we were able to reach all branches.
 ![](readme_images/strings_coverage_after_alessio.png)
-!
+![](readme_images/ToString_statement_coverage_after.png)
+![](readme_images/Eq_statement_coverage_after.png)
 
+
+### Marco
+
+#### Setting Up 
+
+We set up our `BranchAnalyzer` ([commit]()).
+```go
+var ba = BranchAnalyzer{
+	filename: "strings.go",
+	branches: [19]bool{},
+	functions: [6]Function{
+		...
+		{name: "InSlice", startBranchId: 13, untilId: 16},
+		{name: "InSlicEqualFold", startBranchId: 16, untilId: 19},
+	},
+}
+```
+&nbsp;  
+***Function1:*** `InSlice` &nbsp;  
+***File:*** `common/hstrings/strings.go`
+
+```go
+func  InSlice(arr []string, el string) bool {
+	for  _, v  :=  range arr {
+		if v == el { // branch id = 13 (if condition evaluates to true at least once)
+			ba.reachedBranch(13)
+			return  true
+		}
+		// (else)
+		// branch id = 14 (if condition evaluates to false at least once)
+		ba.reachedBranch(14)
+	}
+	// (else)
+	// branch id = 15 (if condition always evaluates to false)
+	ba.reachedBranch(15)
+	return  false
+}
+```
+&nbsp;  
+***Function2:*** `InSliceEqualFold` &nbsp;  
+***File:*** `common/hstrings/strings.go`
+```go
+func  InSlicEqualFold(arr []string, el string) bool {
+	for  _, v  :=  range arr {
+		if strings.EqualFold(v, el) { // branch id = 16 (if condition evaluates to true at least 	once)
+			ba.reachedBranch(16)
+			return  true
+		}
+		// (else)
+		// branch id = 17 (if condition evaluates to false at least once)
+		ba.reachedBranch(17)
+	}
+	// (else)
+	// branch id = 18 (if condition always evaluates to false)
+	ba.reachedBranch(18)
+	return  false
+
+}
+```
+&nbsp;  
+#### Coverage Result Before Improvements
+![](readme_images/strings_coverage_before_alessio.png)
+![]
+
+
+<Function 1 name>
+
+<Show a patch (diff) or a link to a commit made in your forked repository that shows the instrumented code to gather coverage measurements>
+
+<Provide a screenshot of the coverage results output by the instrumentation>
+
+<Function 2 name>
+
+<Provide the same kind of information provided for Function 1>
+
+## Coverage improvement
+
+### Individual tests
 
 <The following is supposed to be repeated for each group member>
 
