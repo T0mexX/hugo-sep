@@ -43,8 +43,7 @@ Statement coverage ([complete file](covers/initial/cover_list.txt)):
 ![](readme_images/total_statement_coverage.png)
 
 
-<Show the coverage results provided by the existing tool with a screenshot>
-
+&nbsp;  
 ## Your own coverage tool
 
 Our own coverage tool focuses on branch coverage. We assigned a branch id that uniquely identifies the branch inside the packet (which usually means the file), so that each packet and its tests can be run independently.
@@ -127,10 +126,6 @@ func TestMain(m *testing.M) {
 }
 ```
 
-<The following is supposed to be repeated for each group member>
-
-<Group member name>
-
 ***
 &nbsp;  
 
@@ -206,6 +201,7 @@ func TestForAssignments(t *testing.T) {
 }
 ```
 
+***
 &nbsp;  
 ### Alessio [[commit](https://github.com/T0mexX/hugo-sep/commit/b2c03cb40f90bf92bbbe7aae49b229a3927ee393)]
 Consider also the following declarations, that are needed to perform the tests.
