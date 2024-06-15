@@ -43,8 +43,7 @@ Statement coverage ([complete file](covers/initial/cover_list.txt)):
 ![](readme_images/total_statement_coverage.png)
 
 
-<Show the coverage results provided by the existing tool with a screenshot>
-
+&nbsp;  
 ## Your own coverage tool
 
 Our own coverage tool focuses on branch coverage. We assigned a branch id that uniquely identifies the branch inside the packet (which usually means the file), so that each packet and its tests can be run independently.
@@ -127,10 +126,6 @@ func TestMain(m *testing.M) {
 }
 ```
 
-<The following is supposed to be repeated for each group member>
-
-<Group member name>
-
 ***
 &nbsp;  
 
@@ -143,7 +138,7 @@ func TestMain(m *testing.M) {
 
 
 #### Setting Up
-We set up our `BranchAnalyzer` ([commit]()).
+We set up our `BranchAnalyzer` [[commit]()].
 ```go
 var ba = BranchAnalyzer{
 	filename: "strings.go",
@@ -193,16 +188,7 @@ func (s StringEqualFold) Eq(s2 any) bool {
 ![](readme_images/ToString_statement_coverage.png)
 
 
-<Function 1 name>
-
-<Show a patch (diff) or a link to a commit made in your forked repository that shows the instrumented code to gather coverage measurements>
-
-<Provide a screenshot of the coverage results output by the instrumentation>
-
-<Function 2 name>
-
-<Provide the same kind of information provided for Function 1>
-
+&nbsp;  
 ## Coverage improvement
 
 
@@ -215,8 +201,9 @@ func TestForAssignments(t *testing.T) {
 }
 ```
 
+***
 &nbsp;  
-### Alessio [[commit]()]
+### Alessio [[commit](https://github.com/T0mexX/hugo-sep/commit/b2c03cb40f90bf92bbbe7aae49b229a3927ee393)]
 Consider also the following declarations, that are needed to perform the tests.
 ```go
 type StringerImplementation struct{ str string }
