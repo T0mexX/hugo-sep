@@ -1,21 +1,47 @@
 
 # Report for Assignment 1
+*** ADD SOMETHING TO FILL THE GAP***
 
-## Project chosen
+## Project chosen: [hugo](https://github.com/gohugoio/hugo)
 
-Name: <TODO>
 
-URL: <TODO>
+##### Lines of code: 
 
-Number of lines of code and the tool used to count it: <TODO>
+![](readme_images/lines_of_code.png)
 
-Programming language: <TODO>
+##### Programming language (for test purposes): *Golang*
 
 ## Coverage measurement
 
 ### Existing tool
 
-<Inform the name of the existing tool that was executed and how it was executed>
+We made use of ***Golang*** built in testing tools.
+We runned the following command to get *statement coverage output* in file `.cover.out`.
+```
+go test ./... -coverprofile .cover.out ./...
+``` 
+<br>
+
+We can then format the output on the console with the following command.
+```
+go tool cover -func .cover.out
+```
+![](readme_images/coverage_console_output.png) <br><br>
+
+We can alternatevely use the following command to open a html page where we can visually check the statement coverage for each file.
+```
+go tool cover -html .cover.out
+```
+![](readme_images/html_coverage_example.png) <br><br>
+
+From the html GUI we were able to identify which packages / files lacked ***statement coverage*** and consequently thos that also lacked ***branch coverage***.
+We chose to improve coverage of the package `hstrings` with file `strings.go`.
+
+##### Statement Coverage
+
+Statement coverage ([complete file](covers/initial/cover_list.txt)):
+![](readme_images/total_statement_coverage.png)
+
 
 <Show the coverage results provided by the existing tool with a screenshot>
 

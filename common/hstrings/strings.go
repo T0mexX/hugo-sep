@@ -95,7 +95,7 @@ func (rc *regexpCache) getOrCompileRegexp(pattern string) (re *regexp.Regexp, er
 	}
 	// (else)
 	// branch id = 12
-
+	ba.reachedBranch(12)
 	return re, nil
 }
 
@@ -211,7 +211,7 @@ var ba = BranchAnalyzer{
 		{name: "ToString", startBranchId: 0, untilId: 3},
 		{name: "Eq", startBranchId: 3, untilId: 6},
 		{name: "EqualAny", startBranchId: 6, untilId: 9},
-		{name: "getOrCompileRegexp", startBranchId: 9, untilId: 12},
+		{name: "getOrCompileRegexp", startBranchId: 9, untilId: 13},
 		{name: "InSlice", startBranchId: 13, untilId: 16},
 		{name: "InSlicEqualFold", startBranchId: 16, untilId: 19},
 	},
