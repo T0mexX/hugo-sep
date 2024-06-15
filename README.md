@@ -285,7 +285,8 @@ t.Run("test for function 'Eq'", func(t *testing.T) {
 &nbsp;  
 #### Coverage Improvements
 ![](readme_images/strings_coverage_after_alessio.png)
-!
+![](readme_images/ToString_statement_coverage_after.png)
+![](readme_images/Eq_statement_coverage_after.png)
 
 
 <The following is supposed to be repeated for each group member>
