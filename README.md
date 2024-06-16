@@ -347,9 +347,9 @@ func  InSlicEqualFold(arr []string, el string) bool {
 #### Coverage Result Before Improvements
 ![](readme_images/strings_coverage_before_alessio.png)
 
-### Norah
+## Norah
 
-#### <span style="color: #006699;">Setting Up</span>
+### <span style="color: #006699;">Setting Up</span>
 
 ***Function 1:***`EqualAny` &nbsp;  
 ***File:*** `common/hstrings/strings.go`
@@ -384,6 +384,8 @@ func EqualAny(a string, b ...string) bool {
 	return false 
 }
 ```
+
+As we can see, the branch coverage was 0:
 ![](readme_images/EqualAny_Coverage_Before.png)
 
 ***Function2:*** `IsFloat` &nbsp;  
@@ -415,16 +417,18 @@ func IsFloat(kind reflect.Kind) bool {
 	}
 }
 ```
+
+As we can see, the branch coverage was 0:
 ![](readme_images/IsFloat_Coverage_Before.png)
 
 &nbsp;  
-## Coverage improvement
+### Coverage improvement
 
-### Individual tests
+#### Individual tests
 
-#### Function1: EqualAny
+##### Function1: EqualAny
 
-##### Code
+###### Code
 ```go
 t.Run("test for function 'EqualAny'", func (t *testing.T) {
 	testCases:= [5]struct {
@@ -450,10 +454,10 @@ t.Run("test for function 'EqualAny'", func (t *testing.T) {
 })
 ```
 
-##### Tests Results
+###### Tests Results
 ![](readme_images/verbose_tests_equalAny.png)
 
-##### Coverage improvements
+###### Coverage improvements
 We went from *0* (*0%*) to *3/3* (*100%*) branches covered. The function takes multiple strings as parameter and checks if the first string provided is equal to any of the other input strings. To test the function we made a few test cases that check, given some input strings, if the return value is as expected.
 
 ***Before***
@@ -463,7 +467,7 @@ We went from *0* (*0%*) to *3/3* (*100%*) branches covered. The function takes m
 ![](readme_images/EqualAny_Coverage_After.png)
 
 
-#### Function2: isFloat
+##### Function2: isFloat
 
 ```go
 t.Run("test for function 'IsFloat'", func(t *testing.T) {
