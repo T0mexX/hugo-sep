@@ -616,7 +616,7 @@ We went from *0* (*0%*) to *3/3* (*100%*) branches covered. The function takes m
 
 Before:
 
-![](readme_images/IsInt_isUint_Coverage_Before.png)
+![](readme_images/IsInt_isUint_Coverage_before.png)
 
 After:
 
