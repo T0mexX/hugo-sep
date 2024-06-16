@@ -354,7 +354,7 @@ func  InSlicEqualFold(arr []string, el string) bool {
 **Function 1:** `EqualAny` &nbsp;  
 **File:** `common/hstrings/strings.go`
 
-The `BranchAnalyzer` and the flags for `common/hstrings/strings.go` was already set up ([commit](https://github.com/T0mexX/hugo-sep/commit/fd3a355808d73476661b655fafe999ec984622a5)).
+The `BranchAnalyzer` and the flags for `common/hstrings/strings.go` was already set up ([commit](https://github.com/T0mexX/hugo-sep/commit/fd3a355808d73476661b655fafe999ec984622a5)):
 
 ```go
 var ba = BranchAnalyzer{
@@ -389,10 +389,11 @@ As we can see, the branch coverage was 0%:
 
 ![](readme_images/EqualAny_Coverage_Before.png)
 
+
 **Function2:** `IsFloat` &nbsp;  
 **File:** `common/hreflect/helpers.go`
 
-We set up our `BranchAnalyzer` for `common/hreflect/helpers.go` ([commit]([text](https://github.com/T0mexX/hugo-sep/commit/fd3a355808d73476661b655fafe999ec984622a5)))
+We set up our `BranchAnalyzer` for `common/hreflect/helpers.go` ([commit]([text](https://github.com/T0mexX/hugo-sep/commit/fd3a355808d73476661b655fafe999ec984622a5))):
 
 ```go
 var ba = BranchAnalyzer{
@@ -404,7 +405,7 @@ var ba = BranchAnalyzer{
 	},
 }
 ```
-and added flags in the function ([commit](https://github.com/T0mexX/hugo-sep/commit/97fc43e4f2f34f6b962e3d3f7fb4d5efacb2242e))
+and added flags in the function ([commit](https://github.com/T0mexX/hugo-sep/commit/97fc43e4f2f34f6b962e3d3f7fb4d5efacb2242e)):
 ```go
 // IsFloat returns whether the given kind is a float.
 func IsFloat(kind reflect.Kind) bool {
@@ -517,7 +518,7 @@ After:
 
 ### Setting Up
 
-We set up our `BranchAnalyzer` for `common/hreflect/helpers.go` ([commit](https://github.com/T0mexX/hugo-sep/commit/fd3a355808d73476661b655fafe999ec984622a5))
+We set up our `BranchAnalyzer` for `common/hreflect/helpers.go` ([commit](https://github.com/T0mexX/hugo-sep/commit/fd3a355808d73476661b655fafe999ec984622a5)):
 
 ```go
 var ba = BranchAnalyzer{
@@ -534,7 +535,7 @@ var ba = BranchAnalyzer{
 **Function 1:** `IsInt` &nbsp;  
 **File:** `common/hreflect/helpers.go`
 
-and added flags in the function ([commit](https://github.com/T0mexX/hugo-sep/commit/97fc43e4f2f34f6b962e3d3f7fb4d5efacb2242e))
+and added flags in the function ([commit](https://github.com/T0mexX/hugo-sep/commit/97fc43e4f2f34f6b962e3d3f7fb4d5efacb2242e)):
 
 ```go
 // IsInt returns whether the given kind is an int.
