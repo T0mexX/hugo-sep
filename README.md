@@ -426,7 +426,7 @@ As we can see, the branch coverage was 0:
 
 #### Individual tests
 
-##### Function1: EqualAny
+##### Function1: EqualAny ([commit](https://github.com/T0mexX/hugo-sep/commit/95a766930486ea4433912cd7bad2480c1df21ba1))
 
 ###### Code
 ```go
@@ -467,7 +467,7 @@ We went from *0* (*0%*) to *3/3* (*100%*) branches covered. The function takes m
 ![](readme_images/EqualAny_Coverage_After.png)
 
 
-##### Function2: isFloat
+##### Function2: isFloat ([commit](https://github.com/T0mexX/hugo-sep/commit/97fc43e4f2f34f6b962e3d3f7fb4d5efacb2242e))
 
 ```go
 t.Run("test for function 'IsFloat'", func(t *testing.T) {
@@ -495,42 +495,22 @@ t.Run("test for function 'IsFloat'", func(t *testing.T) {
 	}
 })
 ```
+
+###### Tests Results
 ![](readme_images/verbose_tests_isFloat.png)
 
+###### Coverage improvements
+We went from *0* (*0%*) to *3/3* (*100%*) branches covered. The function gets an input and then checks if, the given parameter, is of type `Float`. To test the function we made a few test cases that check, given different input types (`Uint`, `String`, `Bool`, `Int`, `Chan` and `Float`), that the outcome is as expected (ex: Uint8 -> False, Float8 -> True).
 
-<Function 1 name>
+***Before***
+![](readme_images/IsFloat_Coverage_Before.png)
 
-<Show a patch (diff) or a link to a commit made in your forked repository that shows the instrumented code to gather coverage measurements>
+***After***
+![](readme_images/IsFloat_Coverage_After.png)
 
-<Provide a screenshot of the coverage results output by the instrumentation>
 
-<Function 2 name>
 
-<Provide the same kind of information provided for Function 1>
-
-## Coverage improvement
-
-### Individual tests
-
-<The following is supposed to be repeated for each group member>
-
-<Group member name>
-
-<Test 1>
-
-<Show a patch (diff) or a link to a commit made in your forked repository that shows the new/enhanced test>
-
-<Provide a screenshot of the old coverage results (the same as you already showed above)>
-
-<Provide a screenshot of the new coverage results>
-
-<State the coverage improvement with a number and elaborate on why the coverage is improved>
-
-<Test 2>
-
-<Provide the same kind of information provided for Test 1>
-
-### Overall
+## Overall
 
 <Provide a screenshot of the old coverage results by running an existing tool (the same as you already showed above)>
 
