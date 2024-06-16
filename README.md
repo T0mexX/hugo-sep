@@ -11,7 +11,22 @@
 
 ##### Programming language (for test purposes): *Golang*
 
+
+
+
+
+
+
+
+
+
+
+
+&nbsp;  
+&nbsp;  
+&nbsp;  
 ## Coverage measurement
+
 
 ### Existing tool
 
@@ -43,10 +58,30 @@ Statement coverage ([complete file](covers/initial/cover_list.txt)):
 ![](readme_images/total_statement_coverage.png)
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&nbsp;  
+&nbsp;  
 &nbsp;  
 ## Your own coverage tool
 
 Our own coverage tool focuses on branch coverage. We assigned a branch id that uniquely identifies the branch inside the packet (which usually means the file), so that each packet and its tests can be run independently.
+
+>**PLEASE NOTE:** Our intention was to enhance coverage of the 6 functions with multiple branches that are present in the `strings.go` file. However, we discovered that the function `getOrCompileRegexp` had one unreachable branch (the if condition `if err != nil` can not not be reached since `Regexp.Compile()` always return a `nil` error). Therefore we had to find an additional file.
+
 
 To keep track of the different branches we used the following logic.
 ```go
@@ -187,7 +222,20 @@ func (s StringEqualFold) Eq(s2 any) bool {
 ![](readme_images/Eq_statement_coverage.png)
 ![](readme_images/ToString_statement_coverage.png)
 
+___
 
+&nbsp;  
+#### Marco
+> **ADD SECTION** 
+
+___
+
+&nbsp;  
+#### Norah
+> **ADD SECTION** 
+
+&nbsp;  
+&nbsp;  
 &nbsp;  
 ## Coverage improvement
 
@@ -267,7 +315,7 @@ t.Run("test for function 'Eq'", func(t *testing.T) {
 	})
 ```
 &nbsp;  
-#### Previous Coverage Results
+#### Coverage Result Before Improvements
 
 ![](readme_images/strings_coverage_before_alessio.png)
 ![](readme_images/ToString_statement_coverage.png)
@@ -284,8 +332,11 @@ t.Run("test for function 'Eq'", func(t *testing.T) {
 ![](readme_images/ToString_statement_coverage_after.png)
 ![](readme_images/Eq_statement_coverage_after.png)
 
+___
 
+&nbsp;  
 ### Marco
+>**MOVE STUFF IN PREVIOUS SECTION**
 
 #### Setting Up 
 
@@ -347,8 +398,11 @@ func  InSlicEqualFold(arr []string, el string) bool {
 #### Coverage Result Before Improvements
 ![](readme_images/strings_coverage_before_alessio.png)
 
-## Norah
+___
 
+&nbsp;
+### Norah
+>**MOVE STUFF IN PREVIOUS SECTION**
 ### <span style="color: #006699;">Setting Up</span>
 
 **Function 1:** `EqualAny` &nbsp;  
