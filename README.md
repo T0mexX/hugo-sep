@@ -138,7 +138,7 @@ func TestMain(m *testing.M) {
 
 
 #### Setting Up
-We set up our `BranchAnalyzer` [[commit]()].
+We set up our `BranchAnalyzer` ([commit]([text](https://github.com/T0mexX/hugo-sep/commit/b2c03cb40f90bf92bbbe7aae49b229a3927ee393))).
 ```go
 var ba = BranchAnalyzer{
 	filename: "strings.go",
@@ -346,8 +346,80 @@ func  InSlicEqualFold(arr []string, el string) bool {
 &nbsp;  
 #### Coverage Result Before Improvements
 ![](readme_images/strings_coverage_before_alessio.png)
-![]
 
+### Norah
+
+#### <span style="color: #006699;">Setting Up</span>
+
+***Function 1:***`EqualAny` &nbsp;  
+***File:*** `common/hstrings/strings.go`
+
+The `BranchAnalyzer` and the flags for `common/hstrings/strings.go` was already set up ([commit]([text](https://github.com/T0mexX/hugo-sep/commit/b2c03cb40f90bf92bbbe7aae49b229a3927ee393))).
+```go
+var ba = BranchAnalyzer{
+	filename: "strings.go",
+	branches: [19]bool{},
+	functions: [6]Function{
+		...
+		{name: "EqualAny", startBranchId: 6, untilId: 9},
+		...
+	},
+}
+```
+
+```go
+func EqualAny(a string, b ...string) bool {
+	for _, s := range b {
+		if a == s { // branch id = 6 (if condition evaluates to true at least once)
+			ba.reachedBranch(6)
+			return true
+		}
+		// (else)
+		// branch id = 7 (if condition evaluates to false at least once)
+		ba.reachedBranch(7)
+	}
+	// branch id = 8 (if condition always evaluates to false)
+	ba.reachedBranch(8)
+	return false 
+}
+```
+
+***Function2:*** `IsFloat` &nbsp;  
+***File:*** `common/hreflect/helpers.go`
+
+Additionally, we set up our `BranchAnalyzer` for `common/hreflect/helpers.go` ([commit]([text](https://github.com/T0mexX/hugo-sep/commit/fd3a355808d73476661b655fafe999ec984622a5)))
+
+```go
+var ba = BranchAnalyzer{
+	filename: "helpers.go",
+	branches: [6]bool{},
+	functions: [3]Function{
+		...
+		{name: "IsFloat", startBranchId: 4, untilId: 6},
+	},
+}
+```
+and added flags in the function ([commit]([text](https://github.com/T0mexX/hugo-sep/commit/97fc43e4f2f34f6b962e3d3f7fb4d5efacb2242e)))
+```go
+// IsFloat returns whether the given kind is a float.
+func IsFloat(kind reflect.Kind) bool {
+	switch kind {
+	case reflect.Float32, reflect.Float64:
+		ba.reachedBranch(4)
+		return true // branch id = 4
+	default:
+		ba.reachedBranch(5)
+		return false // branch id = 5
+	}
+}
+```
+
+&nbsp;  
+#### Coverage Result Before Improvements
+
+The branch coverage of both functions was 0 as there were no tests dedicated. You can view the percentages in the following screenshots:
+![](readme_images/EqualAny_Coverage_Before.png)
+![](readme_images/IsFloat_Coverage_Before.png)
 
 <Function 1 name>
 
