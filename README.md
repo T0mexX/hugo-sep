@@ -196,7 +196,7 @@ _______
 &nbsp; 
 ## Alessio
 ###### Setting Up
-We set up our `BranchAnalyzer` and tests [[commit]([text](https://github.com/T0mexX/hugo-sep/commit/b2c03cb40f90bf92bbbe7aae49b229a3927ee393))].
+We set up our `BranchAnalyzer` and tests [[commit](https://github.com/T0mexX/hugo-sep/commit/b2c03cb40f90bf92bbbe7aae49b229a3927ee393)].
 ```go
 var ba = BranchAnalyzer{
 	filename: "strings.go",
@@ -377,7 +377,7 @@ func EqualAny(a string, b ...string) bool {
 ```
 
 
-&nbsp;
+&nbsp;  
 **Function 2:** `IsFloat` &nbsp;
 **File:** `common/hreflect/helpers.go`
 
@@ -465,7 +465,7 @@ t.Run("test for function 'EqualAny'", func (t *testing.T) {
 
 
 
-&nbsp;
+&nbsp;  
 ***Function 2:*** `IsFloat` &nbsp;
 ***File:*** `common/hreflect/helpers.go` 
 ***Link to Commit:*** [commit](https://github.com/T0mexX/hugo-sep/commit/97fc43e4f2f34f6b962e3d3f7fb4d5efacb2242e)
@@ -517,7 +517,7 @@ We went from *0* (*0%*) to *3/3* (*100%*) branches covered. The function takes m
 
 
 
-&nbsp;
+&nbsp;  
 **Function 2:** `IsFloat` &nbsp;
 **File:** `common/hreflect/helpers.go`
 
