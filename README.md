@@ -216,8 +216,11 @@ func TestForAssignments(t *testing.T) {
 &nbsp;  
 &nbsp;
 _______
-_______ 
-&nbsp;  
+_______
+
+&nbsp;
+![](readme_images/Marco__2_-removebg.png)
+&nbsp; 
 ## Alessio
 ###### Setting Up
 We set up our `BranchAnalyzer` [[commit](https://github.com/T0mexX/hugo-sep/commit/b2c03cb40f90bf92bbbe7aae49b229a3927ee393)].
