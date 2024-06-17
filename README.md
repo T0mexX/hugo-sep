@@ -1,5 +1,6 @@
 
 # Report for Assignment 1
+
 ###### Group Members
 - Alessio Leonardo Tomei (lto223)
 - Marco Trapasso (mtr237)
@@ -337,7 +338,9 @@ ___
 ### Marco
 ###### Setting Up 
 
-We set up our `BranchAnalyze`
+We set up our `BranchAnalyze` [[commit](https://github.com/T0mexX/hugo-sep/commit/b2c03cb40f90bf92bbbe7aae49b229a3927ee393)].
+
+
 
 ```go
 var ba = BranchAnalyzer{
@@ -351,7 +354,7 @@ var ba = BranchAnalyzer{
 }
 ```
 &nbsp;  
-***Function1:*** `InSlice` [[commit](https://github.com/gohugoio/hugo/commit/6f60dc6125af5db5f8221185e82453280c7250ae)].          
+***Function1:*** `InSlice`           
 ***File:*** `common/hstrings/strings.go`
 
 ```go
@@ -372,7 +375,7 @@ func  InSlice(arr []string, el string) bool {
 }
 ```
 &nbsp;  
-***Function2:*** `InSliceEqualFold` [[commit](https://github.com/gohugoio/hugo/commit/6f60dc6125af5db5f8221185e82453280c7250ae)].     
+***Function2:*** `InSliceEqualFold`      
 ***File:*** `common/hstrings/strings.go`
 ```go
 func  InSlicEqualFold(arr []string, el string) bool {
@@ -400,6 +403,7 @@ By running our own branch coverage tool we have evaluated the branch coverage to
 &nbsp;  
 
 ![](readme_images/marco_string.png)
+![](readme_images/marco_statement_cover.png)
 
 ###### Tests
 ***Function1:*** `InSlice` [[commit](https://github.com/gohugoio/hugo/commit/6f60dc6125af5db5f8221185e82453280c7250ae)].    
@@ -463,9 +467,6 @@ In the red box below we show the outcome of the tests for `InSlice`  and `InSlic
 ![](readme_images/marco_verbose_tests_string.png)
 
 By running the built-in go tools, we check the statement coverage of the function  `InSlice`  and `InSliceEqualFold`.
-&nbsp;  
-
-![](readme_images/marco_statement_cover.png)
 &nbsp;  
 
 ###### Coverage Result After Improvement
