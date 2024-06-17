@@ -745,11 +745,38 @@ Before:
 After:
 ![](readme_images/IsUnit_Coverage_After.png)
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp;  
 ## Overall
 
 <Provide a screenshot of the old coverage results by running an existing tool (the same as you already showed above)>
 
 <Provide a screenshot of the new coverage results by running the existing tool using all test modifications made by the group>
+
+
+
+
+
 
 ## Statement of individual contributions
 
