@@ -55,11 +55,14 @@ go tool cover -html .cover.out
 From the html GUI we were able to identify which packages / files lacked ***statement coverage*** and consequently thos that also lacked ***branch coverage***.
 We chose to improve coverage of the package `hstrings` with file `strings.go`.
 
-##### Statement Coverage
+##### Statement Coverage Before Improvements
 
-Statement coverage ([complete file](covers/initial/cover_list.txt)):
+Total statement coverage [[complete file](covers/initial/cover_list.txt)]:
 ![](readme_images/total_statement_coverage.png)
 
+&nbsp;  
+Statement coverage for package `hstrings` [[file]()]:
+![](readme_images/statement_coverage_list_before_hstrings.png)
 
 
 
@@ -170,16 +173,9 @@ func TestMain(m *testing.M) {
 ***
 &nbsp;  
 
-### Alessio
-***Function1:*** `ToString` &nbsp;  
-***File:*** `common/hstrings/strings.go`
-
-***Function2:*** `Eq` &nbsp;  
-***File:*** `common/hstrings/strings.go`
-
-
-#### Setting Up
-We set up our `BranchAnalyzer` ([commit]([text](https://github.com/T0mexX/hugo-sep/commit/b2c03cb40f90bf92bbbe7aae49b229a3927ee393))).
+## Alessio
+###### Setting Up
+We set up our `BranchAnalyzer` and tests [[commit]([text](https://github.com/T0mexX/hugo-sep/commit/b2c03cb40f90bf92bbbe7aae49b229a3927ee393))].
 ```go
 var ba = BranchAnalyzer{
 	filename: "strings.go",
@@ -191,6 +187,10 @@ var ba = BranchAnalyzer{
 	},
 }
 ```
+
+&nbsp;  
+***Function1:*** `ToString` &nbsp;  
+***File:*** `common/hstrings/strings.go`
 
 ```go
 func ToString(v any) (string, bool) {
@@ -207,6 +207,11 @@ func ToString(v any) (string, bool) {
 	return "", false 
 }
 ```
+
+&nbsp;  
+***Function2:*** `Eq` &nbsp;  
+***File:*** `common/hstrings/strings.go`
+
 ```go
 func (s StringEqualFold) Eq(s2 any) bool {
 	switch ss := s2.(type) {
@@ -222,12 +227,89 @@ func (s StringEqualFold) Eq(s2 any) bool {
 	return false 
 }
 ```
-&nbsp;  
-#### Coverage Result Before Improvements
-![](readme_images/strings_coverage_before_alessio.png)
-![](readme_images/Eq_statement_coverage.png)
-![](readme_images/ToString_statement_coverage.png)
 
+&nbsp; 
+###### Coverage Results Before Improvements
+
+Consider also the following declarations, that are needed to perform the tests.
+```go
+type StringerImplementation struct{ str string }
+func (si StringerImplementation) String() string { return si.str }
+```
+
+&nbsp;  
+***Function1:*** `ToString` &nbsp;  
+***File:*** `common/hstrings/strings.go`
+
+```go
+t.Run("test for function 'ToString'", func(t *testing.T) {
+		testCases := [3]struct {
+			input        any
+			expectedStr  string
+			expectedBool bool
+		}{
+			{input: "a string", expectedStr: "a string", expectedBool: true},
+			{
+				input:        StringerImplementation{"This is a Stringer implementation."},
+				expectedStr:  "This is a Stringer implementation.",
+				expectedBool: true,
+			},
+			{input: 2, expectedStr: "", expectedBool: false},
+		}
+
+		for _, testCase := range testCases {
+			t.Run(fmt.Sprintf("TestCase: %v", testCase), func(t *testing.T) {
+				strOut, boolOut := ToString(testCase.input)
+				assert.Equal(t, testCase.expectedStr, strOut)
+				assert.Equal(t, testCase.expectedBool, boolOut)
+			})
+		}
+	})
+```
+&nbsp;  
+
+***Function2:*** `Eq` &nbsp;  
+***File:*** `common/hstrings/strings.go`
+
+```go
+t.Run("test for function 'Eq'", func(t *testing.T) {
+		funReceiver := StringEqualFold("a string")
+		testCases := [5]struct {
+			input    any
+			expected bool
+		}{
+			{input: "a string", expected: true},
+			{input: "a string but the wrong one", expected: false},
+			{input: "a string", expected: true},
+			{input: StringerImplementation{"a string but the wrong one"}, expected: false},
+			{input: 4, expected: false},
+		}
+
+		for _, testCase := range testCases {
+			t.Run(fmt.Sprintf("TestCase: %v", testCase), func(t *testing.T) {
+				boolOut := funReceiver.Eq(testCase.input)
+				assert.Equal(t, testCase.expected, boolOut)
+			})
+		}
+	})
+```
+&nbsp;  
+######  Coverage Results Before Improvements
+
+![](readme_images/strings_coverage_before_alessio.png)
+![](readme_images/ToString_statement_coverage.png)
+![](readme_images/Eq_statement_coverage.png)
+
+&nbsp;  
+###### Tests
+![](readme_images/verbose_tests_strings_alessio.png)
+
+&nbsp;  
+###### Coverage Improvements
+Considering only these 2 functions, we went from *1/6* (*16.67%*) to *6/6* (*100%*) branches covered. Improving these 2 functions branch coverage concerned about passing parameter of different types. By defining test cases with parameter of type `string`, `Stringer` and a third different type (in our case `int`), we were able to reach all branches.
+![](readme_images/strings_coverage_after_alessio.png)
+![](readme_images/ToString_statement_coverage_after.png)
+![](readme_images/Eq_statement_coverage_after.png)
 ___
 
 &nbsp;  
@@ -237,8 +319,8 @@ ___
 ___
 
 &nbsp;  
->### Norah
-#### Setting Up
+### Norah
+###### Setting Up
 
 **Function 1:** `EqualAny` &nbsp;  
 **File:** `common/hstrings/strings.go`
@@ -307,7 +389,7 @@ func IsFloat(kind reflect.Kind) bool {
 ```
 
 &nbsp;
-#### Coverage Result Before Improvements
+###### Coverage Result Before Improvements
 
 **Function 1:** `EqualAny` &nbsp;
 As we can see, the branch coverage was 0%:
@@ -326,7 +408,7 @@ ___
 &nbsp; 
 >### Extra functions
 
-#### Setting Up
+###### Setting Up
 
 We set up our `BranchAnalyzer` for `common/hreflect/helpers.go` ([commit](https://github.com/T0mexX/hugo-sep/commit/fd3a355808d73476661b655fafe999ec984622a5)):
 
@@ -342,7 +424,7 @@ var ba = BranchAnalyzer{
 }
 ```
 
-
+&nbsp;  
 **Function 1:** `IsInt` &nbsp;  
 **File:** `common/hreflect/helpers.go`
 
@@ -362,7 +444,7 @@ func IsInt(kind reflect.Kind) bool {
 }
 ```
 
-
+&nbsp;  
 **Function 2:** `IsUint` &nbsp;  
 **File:** `common/hreflect/helpers.go`
 
@@ -381,7 +463,7 @@ func IsUint(kind reflect.Kind) bool {
 ```
 
 &nbsp;  
-#### Coverage Result Before Improvements
+###### Coverage Results Before Improvements
 As we can see, the branch coverage for both of the functions was 0%:
 
 ![](readme_images/isInt_IsUint_Coverage_before.png)
@@ -408,85 +490,7 @@ func TestForAssignments(t *testing.T) {
 ***
 &nbsp;  
 ### Alessio [[commit](https://github.com/T0mexX/hugo-sep/commit/b2c03cb40f90bf92bbbe7aae49b229a3927ee393)]
-Consider also the following declarations, that are needed to perform the tests.
-```go
-type StringerImplementation struct{ str string }
-func (si StringerImplementation) String() string { return si.str }
-```
 
-&nbsp;  
-***Function1:*** `ToString` &nbsp;  
-***File:*** `common/hstrings/strings.go`
-
-```go
-t.Run("test for function 'ToString'", func(t *testing.T) {
-		testCases := [3]struct {
-			input        any
-			expectedStr  string
-			expectedBool bool
-		}{
-			{input: "a string", expectedStr: "a string", expectedBool: true},
-			{
-				input:        StringerImplementation{"This is a Stringer implementation."},
-				expectedStr:  "This is a Stringer implementation.",
-				expectedBool: true,
-			},
-			{input: 2, expectedStr: "", expectedBool: false},
-		}
-
-		for _, testCase := range testCases {
-			t.Run(fmt.Sprintf("TestCase: %v", testCase), func(t *testing.T) {
-				strOut, boolOut := ToString(testCase.input)
-				assert.Equal(t, testCase.expectedStr, strOut)
-				assert.Equal(t, testCase.expectedBool, boolOut)
-			})
-		}
-	})
-```
-&nbsp;  
-
-***Function2:*** `Eq` &nbsp;  
-***File:*** `common/hstrings/strings.go`
-
-```go
-t.Run("test for function 'Eq'", func(t *testing.T) {
-		funReceiver := StringEqualFold("a string")
-		testCases := [5]struct {
-			input    any
-			expected bool
-		}{
-			{input: "a string", expected: true},
-			{input: "a string but the wrong one", expected: false},
-			{input: "a string", expected: true},
-			{input: StringerImplementation{"a string but the wrong one"}, expected: false},
-			{input: 4, expected: false},
-		}
-
-		for _, testCase := range testCases {
-			t.Run(fmt.Sprintf("TestCase: %v", testCase), func(t *testing.T) {
-				boolOut := funReceiver.Eq(testCase.input)
-				assert.Equal(t, testCase.expected, boolOut)
-			})
-		}
-	})
-```
-&nbsp;  
-#### Coverage Result Before Improvements
-
-![](readme_images/strings_coverage_before_alessio.png)
-![](readme_images/ToString_statement_coverage.png)
-![](readme_images/Eq_statement_coverage.png)
-
-&nbsp;  
-#### Tests
-![](readme_images/verbose_tests_strings_alessio.png)
-
-&nbsp;  
-#### Coverage Improvements
-Considering only these 2 functions, we went from *1/6* (*16.67%*) to *6/6* (*100%*) branches covered. Improving these 2 functions branch coverage concerned about passing parameter of different types. By defining test cases with parameter of type `string`, `Stringer` and a third different type (in our case `int`), we were able to reach all branches.
-![](readme_images/strings_coverage_after_alessio.png)
-![](readme_images/ToString_statement_coverage_after.png)
-![](readme_images/Eq_statement_coverage_after.png)
 
 ___
 
@@ -494,7 +498,8 @@ ___
 ### Marco
 >**MOVE STUFF IN PREVIOUS SECTION**
 
-#### Setting Up 
+&nbsp;  
+###### Setting Up 
 
 We set up our `BranchAnalyzer` ([commit]()).
 ```go
@@ -550,18 +555,19 @@ func  InSlicEqualFold(arr []string, el string) bool {
 
 }
 ```
+
+
 &nbsp;  
-#### Coverage Result Before Improvements
+###### Coverage Result Before Improvements
 ![](readme_images/strings_coverage_before_alessio.png)
 
 ___
 
 &nbsp;
->### Norah
+### Norah
 
 ##### Function 1: `EqualAny` ([commit](https://github.com/T0mexX/hugo-sep/commit/95a766930486ea4433912cd7bad2480c1df21ba1))
 
-###### Code
 ```go
 t.Run("test for function 'EqualAny'", func (t *testing.T) {
 	testCases:= [5]struct {
@@ -599,13 +605,9 @@ t.Run("test for function 'EqualAny'", func (t *testing.T) {
 ###### Coverage improvement
 We went from *0* (*0%*) to *3/3* (*100%*) branches covered. The function takes multiple strings as parameter and checks if the first string provided is equal to any of the other input strings. To test the function we made a few test cases that check, given some input strings, if the return value is as expected.
 
-Before:
-
 ![](readme_images/EqualAny_Coverage_Before.png)
 
-<br>
-After:
-
+&nbsp;  
 ![](readme_images/EqualAny_Coverage_After.png)
 
 
@@ -715,7 +717,7 @@ We went from *0* (*0%*) to *3/3* (*100%*) branches covered. The function takes m
 
 Before:
 
-![](readme_images/IsInt_isUint_Coverage_before.png)
+![](readme_images/isInt_IsUint_Coverage_before.png)
 
 </br>
 After:
@@ -770,12 +772,39 @@ We went from *0* (*0%*) to *3/3* (*100%*) branches covered. The function gets an
 
 Before:
 
-![](readme_images/IsInt_isUint_Coverage_before.png)
+![](readme_images/isInt_IsUint_Coverage_before.png)
 
 </br>
 After:
 
 ![](readme_images/IsUnit_Coverage_After.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 &nbsp;  
@@ -786,10 +815,60 @@ _______
 &nbsp;  
 ## Overall
 
-<Provide a screenshot of the old coverage results by running an existing tool (the same as you already showed above)>
 
-<Provide a screenshot of the new coverage results by running the existing tool using all test modifications made by the group>
+### Package ``hstrings``
+
+Statement coverage before improvements [[file](common/hstrings/original_cover/statement_cover_list.txt)].
+![](readme_images/statement_coverage_list_before_hstrings.png)
+
+&nbsp;  
+Statement coverage after improvements [[file](common/hstrings/statement_cover_list.txt)]:
+![](readme_images/statement_coverage_list_after_hstrings.png)
+
+
+
+&nbsp;  
+### Package `` ``
+>***ADD SECTION***
+
+Statement coverage before improvements [[file]()].
+![]()
+
+&nbsp;  
+Statement coverage after improvements [[file]()]:
+![]()
+
+
+&nbsp;  
+### All Packages
+Statement coverage before improvements [[complete file](common/hstrings/original_cover/statement_cover_list.txt)].
+![](readme_images/total_statement_coverage.png)
+
+&nbsp;  
+Statement coverage after improvements [[complete file](covers/final/statement_cover_list.txt)]:
+![](readme_images/total_statement_coverage_after.png)
+>***REMEMBER:*** The project has more than 200.000 lines of code.
+
+
+
+
 
 ## Statement of individual contributions
 
-<Write what each group member did>
+#### Alessio
+- Improved coverage for functions `ToString` and `Eq` in file `common/hstrings/strings.go`.
+- Added the `README.md` sections related to the above mentioned functions.
+
+#### Marco
+- TODO
+- TODO
+
+#### Norah
+- TODO
+- TODO
+
+
+#### Everyone
+- Created the structures for measuring ***branch coverage***.
+- Defined the function that formats the ***branch coverage*** to `branch_coverage.txt` file.
+- Wrote introductory `README.md` section.
