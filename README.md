@@ -85,8 +85,10 @@ Statement coverage for package `hstrings` [[file]()]:
 _______
 _______ 
 &nbsp;  
-&nbsp;  
-## Your own coverage tool
+&nbsp; 
+## Test Coverage and Hierarchy
+
+### Our Coverage Tool
 
 Our own coverage tool focuses on branch coverage. We assigned a branch id that uniquely identifies the branch inside the packet (which usually means the file), so that each packet and its tests can be run independently.
 
@@ -174,7 +176,7 @@ func TestMain(m *testing.M) {
 ***
 &nbsp;  
 
-### Individual tests
+### Tests Hierarchy
 All tests related to this assignment and in the same package were defined hierarchically in the same test group.
 ```
 func TestForAssignments(t *testing.T) {
@@ -183,7 +185,12 @@ func TestForAssignments(t *testing.T) {
 }
 ```
 
-
+&nbsp;  
+&nbsp;
+_______
+_______ 
+&nbsp;  
+&nbsp; 
 ## Alessio
 ###### Setting Up
 We set up our `BranchAnalyzer` and tests [[commit]([text](https://github.com/T0mexX/hugo-sep/commit/b2c03cb40f90bf92bbbe7aae49b229a3927ee393))].
