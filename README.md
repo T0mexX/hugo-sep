@@ -313,9 +313,155 @@ Considering only these 2 functions, we went from *1/6* (*16.67%*) to *6/6* (*100
 ___
 
 &nbsp;  
-### Marco
-> **ADD SECTION** 
 
+ 
+
+&nbsp;  
+### Marco
+###### Setting Up 
+
+We set up our `BranchAnalyzer` ([commit]()).
+```go
+var ba = BranchAnalyzer{
+	filename: "strings.go",
+	branches: [19]bool{},
+	functions: [6]Function{
+		...
+		{name: "InSlice", startBranchId: 13, untilId: 16},
+		{name: "InSlicEqualFold", startBranchId: 16, untilId: 19},
+	},
+}
+```
+&nbsp;  
+***Function1:*** `InSlice` &nbsp;  
+***File:*** `common/hstrings/strings.go`
+
+```go
+func  InSlice(arr []string, el string) bool {
+	for  _, v  :=  range arr {
+		if v == el { // branch id = 13 (if condition evaluates to true at least once)
+			ba.reachedBranch(13)
+			return  true
+		}
+		// (else)
+		// branch id = 14 (if condition evaluates to false at least once)
+		ba.reachedBranch(14)
+	}
+	// (else)
+	// branch id = 15 (if condition always evaluates to false)
+	ba.reachedBranch(15)
+	return  false
+}
+```
+&nbsp;  
+***Function2:*** `InSliceEqualFold` &nbsp;  
+***File:*** `common/hstrings/strings.go`
+```go
+func  InSlicEqualFold(arr []string, el string) bool {
+	for  _, v  :=  range arr {
+		if strings.EqualFold(v, el) { // branch id = 16 (if condition evaluates to true at least 	once)
+			ba.reachedBranch(16)
+			return  true
+		}
+		// (else)
+		// branch id = 17 (if condition evaluates to false at least onece 
+		ba.branch(17)
+	}
+	// (else)
+	// branch id = 18 (if condition always evaluates to false)
+	ba.reachedBranch(18)
+	return  false
+
+}
+```
+
+
+&nbsp;  
+#### Coverage Result Before Improvements
+By running our own branch coverage tool we have evaluated the branch coverage to 0/3 (0%) for both the functions.
+&nbsp;  
+
+![](readme_images/marco_string.png)
+
+#### Test Implementation
+***Function1:*** `InSlice` &nbsp;   
+***File:*** `common/hstrings/strings.go`
+```go
+
+t.Run("test for function 'InSlice'", func(t *testing.T) {
+	testCases := [6]struct {
+		array_str  []string
+		target_str string
+		expected   bool
+	}{
+		{array_str: []string{"a", "string", "jennifer"}, target_str: "jennifer", expected: true},
+		{array_str: []string{"eh", "io volevo", "te"}, target_str: "te", expected: true},
+		{array_str: []string{"a", "string", "jennifer"}, target_str: "big", expected: false},
+		{array_str: []string{}, target_str: "big", expected: false},
+		{array_str: []string{}, target_str: "", expected: false},
+		{array_str: []string{"     "}, target_str: "", expected: false},
+	}
+
+	for _, testCase := range testCases {
+		t.Run(fmt.Sprintf("TestCase: %v", testCase), func(t *testing.T) {
+			boolOut := InSlice(testCase.array_str, testCase.target_str)
+			assert.Equal(t, testCase.expected, boolOut)
+		})
+	}
+})
+```
+&nbsp;   
+***Function2:*** `InSliceEqualFold` &nbsp;  
+***File:*** `common/hstrings/strings.go`
+
+```go
+t.Run("test for function 'InSliceEqualFold'", func(t *testing.T) {
+	testCases := [6]struct {
+		array_str  []string
+		target_str string
+		expected   bool
+	}{
+		{array_str: []string{"a", "string", "jennifer"}, target_str: "jennifer", expected: true},
+		{array_str: []string{"eh", "io volevo", "te"}, target_str: "te", expected: true},
+		{array_str: []string{"a", "string", "jennifer"}, target_str: "big", expected: false},
+		{array_str: []string{}, target_str: "big", expected: false},
+		{array_str: []string{}, target_str: "", expected: false},
+		{array_str: []string{"     "}, target_str: "", expected: false},
+	}
+
+	for _, testCase := range testCases {
+		t.Run(fmt.Sprintf("TestCase: %v", testCase), func(t *testing.T) {
+			boolOut := InSlicEqualFold(testCase.array_str, testCase.target_str)
+			assert.Equal(t, testCase.expected, boolOut)
+		})
+	}
+})
+```
+&nbsp;  
+###### Test Results
+In the red box below we show the outcome of the tests for `InSlice`  and `InSliceEqualFold`.
+&nbsp;  
+
+![](readme_images/marco_verbose_tests_string.png)
+
+By running the built-in go tools, we check the statement coverage of the function  `InSlice`  and `InSliceEqualFold`.
+&nbsp;  
+
+![](readme_images/marco_statement_cover.png)
+&nbsp;  
+
+##### Coverage Result After Improvement
+
+We improved the test coverage from 0 (0%) to 3/3 (100%) branches covered in both the functions. The function `InSlice` checks if a string is contained in an Array[] of strings. Additionally, the function `InSliceEqualFold` takes as parameters an Array[] of string and a string, it creates an `EqualFold` object with those two parameters and check if the string is contained in the Array[]. Thanks to this behavioural similarity we reused the same test adopted in the previous function (`InSlice)`.  
+&nbsp;  
+
+![](readme_images/marco_strings_coverage_after.png)
+&nbsp;  
+
+By running again the built-in go statement coverage tool we achieve a 100% statement coverage for both the functions. 
+&nbsp;  
+
+![](readme_images/marco_statement_cover_final.png)
 ___
 
 &nbsp;  
@@ -610,77 +756,7 @@ func TestForAssignments(t *testing.T) {
 
 ___
 
-&nbsp;  
-### Marco
->**MOVE STUFF IN PREVIOUS SECTION**
 
-&nbsp;  
-###### Setting Up 
-
-We set up our `BranchAnalyzer` ([commit]()).
-```go
-var ba = BranchAnalyzer{
-	filename: "strings.go",
-	branches: [19]bool{},
-	functions: [6]Function{
-		...
-		{name: "InSlice", startBranchId: 13, untilId: 16},
-		{name: "InSlicEqualFold", startBranchId: 16, untilId: 19},
-	},
-}
-```
-&nbsp;  
-***Function1:*** `InSlice` &nbsp;  
-***File:*** `common/hstrings/strings.go`
-
-```go
-func  InSlice(arr []string, el string) bool {
-	for  _, v  :=  range arr {
-		if v == el { // branch id = 13 (if condition evaluates to true at least once)
-			ba.reachedBranch(13)
-			return  true
-		}
-		// (else)
-		// branch id = 14 (if condition evaluates to false at least once)
-		ba.reachedBranch(14)
-	}
-	// (else)
-	// branch id = 15 (if condition always evaluates to false)
-	ba.reachedBranch(15)
-	return  false
-}
-```
-&nbsp;  
-***Function2:*** `InSliceEqualFold` &nbsp;  
-***File:*** `common/hstrings/strings.go`
-```go
-func  InSlicEqualFold(arr []string, el string) bool {
-	for  _, v  :=  range arr {
-		if strings.EqualFold(v, el) { // branch id = 16 (if condition evaluates to true at least 	once)
-			ba.reachedBranch(16)
-			return  true
-		}
-		// (else)
-		// branch id = 17 (if condition evaluates to false at least once)
-		ba.reachedBranch(17)
-	}
-	// (else)
-	// branch id = 18 (if condition always evaluates to false)
-	ba.reachedBranch(18)
-	return  false
-
-}
-```
-
-
-&nbsp;  
-#### Coverage Result Before Improvements
-![](readme_images/marco_string.png)
-![](readme_images/marco_verbose_tests_string.png)
-###### Coverage Result Before Improvements
-![](readme_images/strings_coverage_before_alessio.png)
-
-___
 
 &nbsp;
 ### Norah
