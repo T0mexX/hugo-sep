@@ -54,6 +54,8 @@ go tool cover -html .cover.out
 ```
 >***NOTE:*** red statements are not reached, while green statements are. The following is just an example section.
 
+
+
 ![](readme_images/html_coverage_example.png) <br><br>
 
 From the html GUI we were able to identify which packages / files lacked ***statement coverage*** and consequently thos that also lacked ***branch coverage***.
@@ -1133,8 +1135,9 @@ Statement coverage after improvements [[complete file](covers/final/statement_co
 - Added the `README.md` sections related to the above mentioned functions.
 
 #### Marco
-- TODO
-- TODO
+- Improved coverage for functions `InSlice` and `InSliceEqualFold` in file `common/hstrings/strings.go`
+- Added the `README.md` sections related to the above mentioned functions.
+ 
 
 #### Norah
 - TODO
