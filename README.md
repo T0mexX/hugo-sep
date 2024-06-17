@@ -22,10 +22,6 @@
 
 
 
-
-
-
-
 &nbsp;  
 &nbsp;  
 _______
@@ -340,7 +336,7 @@ ___
 ### Marco
 ###### Setting Up 
 
-We set up our `BranchAnalyzer` ([commit]()).
+We set up our `BranchAnalyzer` ([commit](https://github.com/gohugoio/hugo/commit/6f60dc6125af5db5f8221185e82453280c7250ae)).
 ```go
 var ba = BranchAnalyzer{
 	filename: "strings.go",
@@ -844,7 +840,6 @@ _______
 
 
 
-<<<<<<< HEAD
 ***
 &nbsp;  
 ### Alessio [[commit](https://github.com/T0mexX/hugo-sep/commit/b2c03cb40f90bf92bbbe7aae49b229a3927ee393)]
