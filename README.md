@@ -875,12 +875,12 @@ Statement coverage after improvements [[file](common/hstrings/statement_cover_li
 ### Package ``hreflect``
 >***ADD SECTION***
 
-Statement coverage before improvements [[file]()].
-![]()
+Statement coverage before improvements [[file](common/hreflect/initial/statement_cover_list.txt)].
+![](readme_images/statement_coverage_list_after_hreflect.png)
 
 &nbsp;  
-Statement coverage after improvements [[file]()]:
-![](readme_images/statement_coverage_list_before_hreflect.png)
+Statement coverage after improvements [[file](common/hreflect/statement_cover_list.txt)]:
+![](readme_images/statement_coverage_list_after_hreflect.png)
 
 
 &nbsp;  
