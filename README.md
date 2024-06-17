@@ -862,7 +862,7 @@ Statement coverage after improvements [[complete file](covers/final/statement_co
 
 #### Alessio
 - Improved coverage for functions `ToString` and `Eq` in file `common/hstrings/strings.go`.
-- Added the readme sections related to the above mentioned functions.
+- Added the `README.md` sections related to the above mentioned functions.
 
 #### Marco
 - TODO
@@ -872,3 +872,8 @@ Statement coverage after improvements [[complete file](covers/final/statement_co
 - TODO
 - TODO
 
+
+#### Everyone
+- Created the structures for measuring ***branch coverage***.
+- Defined the function that formats the ***branch coverage*** to `branch_coverage.txt` file.
+- Wrote introductory `README.md` section.
