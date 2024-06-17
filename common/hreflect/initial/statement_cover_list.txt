@@ -1,0 +1,17 @@
+github.com/gohugoio/hugo/common/hreflect/helpers.go:33:		IsNumber		0.0%
+github.com/gohugoio/hugo/common/hreflect/helpers.go:38:		IsInt			100.0%
+github.com/gohugoio/hugo/common/hreflect/helpers.go:50:		IsUint			100.0%
+github.com/gohugoio/hugo/common/hreflect/helpers.go:62:		IsFloat			100.0%
+github.com/gohugoio/hugo/common/hreflect/helpers.go:75:		IsTruthful		66.7%
+github.com/gohugoio/hugo/common/hreflect/helpers.go:93:		IsTruthfulValue		43.8%
+github.com/gohugoio/hugo/common/hreflect/helpers.go:143:	GetMethodByName		0.0%
+github.com/gohugoio/hugo/common/hreflect/helpers.go:155:	GetMethodIndexByName	93.8%
+github.com/gohugoio/hugo/common/hreflect/helpers.go:188:	IsTime			0.0%
+github.com/gohugoio/hugo/common/hreflect/helpers.go:199:	IsValid			0.0%
+github.com/gohugoio/hugo/common/hreflect/helpers.go:216:	AsTime			0.0%
+github.com/gohugoio/hugo/common/hreflect/helpers.go:232:	CallMethodByName	0.0%
+github.com/gohugoio/hugo/common/hreflect/helpers.go:250:	indirectInterface	40.0%
+github.com/gohugoio/hugo/common/hreflect/helpers.go:269:	IsContextType		83.3%
+github.com/gohugoio/hugo/common/hreflect/helpers.go:315:	reachedBranch		100.0%
+github.com/gohugoio/hugo/common/hreflect/helpers.go:321:	getAnalysis		0.0%
+total:								(statements)		43.5%
