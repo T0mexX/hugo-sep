@@ -2,14 +2,15 @@
 # Report for Assignment 1
 *** ADD SOMETHING TO FILL THE GAP***
 
-## Project chosen: [hugo](https://github.com/gohugoio/hugo)
+## Project chosen: [HUGO](https://github.com/gohugoio/hugo)
 
 
-##### Lines of code: 
+###### Lines of code 
 
 ![](readme_images/lines_of_code.png)
 
-##### Programming language (for test purposes): *Golang*
+&nbsp;  
+###### Programming language (for test purposes): [*Golang*](https://go.dev/)
 
 
 
@@ -231,6 +232,12 @@ func (s StringEqualFold) Eq(s2 any) bool {
 &nbsp; 
 ###### Coverage Results Before Improvements
 
+![](readme_images/strings_coverage_before_alessio.png)
+![](readme_images/ToString_statement_coverage.png)
+![](readme_images/Eq_statement_coverage.png)
+
+&nbsp;  
+###### Tests
 Consider also the following declarations, that are needed to perform the tests.
 ```go
 type StringerImplementation struct{ str string }
@@ -293,15 +300,7 @@ t.Run("test for function 'Eq'", func(t *testing.T) {
 		}
 	})
 ```
-&nbsp;  
-######  Coverage Results Before Improvements
 
-![](readme_images/strings_coverage_before_alessio.png)
-![](readme_images/ToString_statement_coverage.png)
-![](readme_images/Eq_statement_coverage.png)
-
-&nbsp;  
-###### Tests
 ![](readme_images/verbose_tests_strings_alessio.png)
 
 &nbsp;  
