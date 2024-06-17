@@ -192,7 +192,7 @@ _______
 &nbsp; 
 ## Alessio
 ###### Setting Up
-We set up our `BranchAnalyzer` and tests [[commit](https://github.com/T0mexX/hugo-sep/commit/b2c03cb40f90bf92bbbe7aae49b229a3927ee393)].
+We set up our `BranchAnalyzer` [[commit](https://github.com/T0mexX/hugo-sep/commit/b2c03cb40f90bf92bbbe7aae49b229a3927ee393)].
 ```go
 var ba = BranchAnalyzer{
 	filename: "strings.go",
@@ -206,7 +206,7 @@ var ba = BranchAnalyzer{
 ```
 
 &nbsp;  
-***Function1:*** `ToString` &nbsp;  
+***Function1:*** `ToString` [[commit](https://github.com/T0mexX/hugo-sep/commit/69cc0189e4c4f6af55c2d58bac4af44fc2495ac5)]&nbsp;  
 ***File:*** `common/hstrings/strings.go`
 
 ```go
@@ -226,7 +226,7 @@ func ToString(v any) (string, bool) {
 ```
 
 &nbsp;  
-***Function2:*** `Eq` &nbsp;  
+***Function2:*** `Eq` [[commit](https://github.com/T0mexX/hugo-sep/commit/ef6119620725c841ea83af37731adf627bbde815)]&nbsp;  
 ***File:*** `common/hstrings/strings.go`
 
 ```go
