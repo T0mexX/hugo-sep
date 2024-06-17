@@ -1,0 +1,15 @@
+github.com/gohugoio/hugo/common/hreflect/helpers.go:32:		IsNumber		0.0%
+github.com/gohugoio/hugo/common/hreflect/helpers.go:37:		IsInt			0.0%
+github.com/gohugoio/hugo/common/hreflect/helpers.go:47:		IsUint			0.0%
+github.com/gohugoio/hugo/common/hreflect/helpers.go:57:		IsFloat			0.0%
+github.com/gohugoio/hugo/common/hreflect/helpers.go:68:		IsTruthful		66.7%
+github.com/gohugoio/hugo/common/hreflect/helpers.go:86:		IsTruthfulValue		43.8%
+github.com/gohugoio/hugo/common/hreflect/helpers.go:136:	GetMethodByName		0.0%
+github.com/gohugoio/hugo/common/hreflect/helpers.go:148:	GetMethodIndexByName	93.8%
+github.com/gohugoio/hugo/common/hreflect/helpers.go:181:	IsTime			0.0%
+github.com/gohugoio/hugo/common/hreflect/helpers.go:193:	IsValid			0.0%
+github.com/gohugoio/hugo/common/hreflect/helpers.go:210:	AsTime			0.0%
+github.com/gohugoio/hugo/common/hreflect/helpers.go:226:	CallMethodByName	0.0%
+github.com/gohugoio/hugo/common/hreflect/helpers.go:244:	indirectInterface	40.0%
+github.com/gohugoio/hugo/common/hreflect/helpers.go:263:	IsContextType		83.3%
+total:								(statements)		35.6%

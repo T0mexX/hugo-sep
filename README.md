@@ -1,16 +1,20 @@
 
 # Report for Assignment 1
-*** ADD SOMETHING TO FILL THE GAP***
+###### Group Members
+- Alessio Leonardo Tomei (lto223)
+- Marco Trapasso (mtr237)
+- Norah Elisabeth Milanesi (nmi245)
 
-## Project chosen: [hugo](https://github.com/gohugoio/hugo)
+## Project chosen: [HUGO](https://github.com/gohugoio/hugo)
 
 
-##### Lines of code: 
+###### Lines of code 
 
 ![](readme_images/lines_of_code.png)
 
-##### Programming language (for test purposes): <span style="color: blue;">*Golang*</span>
-
+&nbsp;  
+###### Programming language (for test purposes): [*Golang*](https://go.dev/)
+![](readme_images/golang_logo.png)
 
 
 
@@ -50,6 +54,8 @@ We can alternatevely use the following command to open a html page where we can 
 ```
 go tool cover -html .cover.out
 ```
+>***NOTE:*** red statements are not reached, while green statements are. The following is just an example section.
+
 ![](readme_images/html_coverage_example.png) <br><br>
 
 From the html GUI we were able to identify which packages / files lacked ***statement coverage*** and consequently thos that also lacked ***branch coverage***.
@@ -84,8 +90,10 @@ Statement coverage for package `hstrings` [[file]()]:
 _______
 _______ 
 &nbsp;  
-&nbsp;  
-## Your own coverage tool
+&nbsp; 
+## Test Coverage and Hierarchy
+
+### Our Coverage Tool
 
 Our own coverage tool focuses on branch coverage. We assigned a branch id that uniquely identifies the branch inside the packet (which usually means the file), so that each packet and its tests can be run independently.
 
@@ -170,12 +178,25 @@ func TestMain(m *testing.M) {
 }
 ```
 
-***
-&nbsp;  
 
+### Tests Hierarchy
+All tests related to this assignment and in the same package were defined hierarchically in the same test group.
+```
+func TestForAssignments(t *testing.T) {
+	t.Run(<testname>, <test>)
+	...
+}
+```
+
+&nbsp;  
+&nbsp;
+_______
+_______ 
+&nbsp;  
+&nbsp; 
 ## Alessio
 ###### Setting Up
-We set up our `BranchAnalyzer` and tests [[commit]([text](https://github.com/T0mexX/hugo-sep/commit/b2c03cb40f90bf92bbbe7aae49b229a3927ee393))].
+We set up our `BranchAnalyzer` and tests [[commit](https://github.com/T0mexX/hugo-sep/commit/b2c03cb40f90bf92bbbe7aae49b229a3927ee393)].
 ```go
 var ba = BranchAnalyzer{
 	filename: "strings.go",
@@ -231,6 +252,13 @@ func (s StringEqualFold) Eq(s2 any) bool {
 &nbsp; 
 ###### Coverage Results Before Improvements
 
+As we can see from both our own *branch coverage*, and the external *statement coverage* tools, there are 5 branches out of 6 that are not covered.
+![](readme_images/strings_coverage_before_alessio.png)
+![](readme_images/ToString_statement_coverage.png)
+![](readme_images/Eq_statement_coverage.png)
+
+&nbsp;  
+###### Tests
 Consider also the following declarations, that are needed to perform the tests.
 ```go
 type StringerImplementation struct{ str string }
@@ -293,19 +321,11 @@ t.Run("test for function 'Eq'", func(t *testing.T) {
 		}
 	})
 ```
-&nbsp;  
-######  Coverage Results Before Improvements
 
-![](readme_images/strings_coverage_before_alessio.png)
-![](readme_images/ToString_statement_coverage.png)
-![](readme_images/Eq_statement_coverage.png)
-
-&nbsp;  
-###### Tests
 ![](readme_images/verbose_tests_strings_alessio.png)
 
 &nbsp;  
-###### Coverage Improvements
+###### Coverage Results After Improvements
 Considering only these 2 functions, we went from *1/6* (*16.67%*) to *6/6* (*100%*) branches covered. Improving these 2 functions branch coverage concerned about passing parameter of different types. By defining test cases with parameter of type `string`, `Stringer` and a third different type (in our case `int`), we were able to reach all branches.
 ![](readme_images/strings_coverage_after_alessio.png)
 ![](readme_images/ToString_statement_coverage_after.png)
@@ -468,8 +488,8 @@ ___
 ## Norah
 ###### Setting Up
 
-**Function 1:** `EqualAny` &nbsp;  
-**File:** `common/hstrings/strings.go`
+***Function 1:*** `EqualAny` &nbsp;  
+***File:*** `common/hstrings/strings.go`
 
 The `BranchAnalyzer` and the flags for `common/hstrings/strings.go` was already set up ([commit](https://github.com/T0mexX/hugo-sep/commit/fd3a355808d73476661b655fafe999ec984622a5)):
 
@@ -503,7 +523,7 @@ func EqualAny(a string, b ...string) bool {
 ```
 
 
-&nbsp;
+&nbsp;  
 **Function 2:** `IsFloat` &nbsp;
 **File:** `common/hreflect/helpers.go`
 
@@ -545,10 +565,10 @@ As we can see, the branch coverage was 0%:
 ![](readme_images/EqualAny_Coverage_Before.png)
 
 
+&nbsp;  
+***Function 2:*** `IsFloat` &nbsp;  
+***File:*** `common/hreflect/helpers.go` 
 
-&nbsp;
-**Function 2:** `IsFloat` &nbsp;
-**File:** `common/hreflect/helpers.go` 
 As we can see, the branch coverage was 0%:
 
 ![](readme_images/IsFloat_Coverage_Before.png)
@@ -556,10 +576,11 @@ As we can see, the branch coverage was 0%:
 &nbsp;
 
 
-###### Tests Implementation
+###### Tests
 
-**Function 1:** `EqualAny` &nbsp;  
-**File:** `common/hstrings/strings.go`
+***Function 1:*** `EqualAny` &nbsp;  
+***File:*** `common/hstrings/strings.go`
+***Link to Commit:*** [commit](https://github.com/T0mexX/hugo-sep/commit/95a766930486ea4433912cd7bad2480c1df21ba1)
 
 ```go
 t.Run("test for function 'EqualAny'", func (t *testing.T) {
@@ -586,11 +607,15 @@ t.Run("test for function 'EqualAny'", func (t *testing.T) {
 })
 ```
 
+![](readme_images/verbose_tests_equalAny.png)
 
 
-&nbsp;
-**Function 2:** `IsFloat` &nbsp;
-**File:** `common/hreflect/helpers.go` 
+
+&nbsp;  
+***Function 2:*** `IsFloat` &nbsp;
+***File:*** `common/hreflect/helpers.go` 
+***Link to Commit:*** [commit](https://github.com/T0mexX/hugo-sep/commit/97fc43e4f2f34f6b962e3d3f7fb4d5efacb2242e)
+
 
 ```go
 t.Run("test for function 'IsFloat'", func(t *testing.T) {
@@ -619,56 +644,37 @@ t.Run("test for function 'IsFloat'", func(t *testing.T) {
 })
 ```
 
-###### Tests Results
-
-**Function 1:** `EqualAny` &nbsp;  
-**File:** `common/hstrings/strings.go`
-
-![](readme_images/verbose_tests_equalAny.png)
-
-
-
-&nbsp;
-**Function 2:** `IsFloat` &nbsp;
-**File:** `common/hreflect/helpers.go`
 
 ![](readme_images/verbose_tests_isFloat.png)
 
 
 &nbsp;
 &nbsp;
-###### Coverage Improvements
+###### Coverage Results After Improvements
 
 **Function 1:** `EqualAny` &nbsp;  
 **File:** `common/hstrings/strings.go`
 
 We went from *0* (*0%*) to *3/3* (*100%*) branches covered. The function takes multiple strings as parameter and checks if the first string provided is equal to any of the other input strings. To test the function we made a few test cases that check, given some input strings, if the return value is as expected.
 
-![](readme_images/EqualAny_Coverage_Before.png)
 
-&nbsp;
+
 ![](readme_images/EqualAny_Coverage_After.png)
 
 
 
-&nbsp;
+&nbsp;  
 **Function 2:** `IsFloat` &nbsp;
 **File:** `common/hreflect/helpers.go`
 
 We went from *0* (*0%*) to *3/3* (*100%*) branches covered. The function gets an input and then checks if, the given parameter, is of type `Float`. To test the function we made a few test cases that check, given different input types (`Uint`, `String`, `Bool`, `Int`, `Chan` and `Float`), that the outcome is as expected (ex: Uint8 -> False, Float8 -> True).
 
-Before:
-
-![](readme_images/IsFloat_Coverage_Before.png)
-
-</br>
-After:
 
 ![](readme_images/IsFloat_Coverage_After.png)
 
 ___
 &nbsp; 
->### Extra functions
+## Extra functions
 
 ###### Setting Up
 
@@ -686,11 +692,11 @@ var ba = BranchAnalyzer{
 }
 ```
 
+and added flags in the functions ([commit](https://github.com/T0mexX/hugo-sep/commit/97fc43e4f2f34f6b962e3d3f7fb4d5efacb2242e)):
+
 &nbsp;  
 **Function 1:** `IsInt` &nbsp;  
 **File:** `common/hreflect/helpers.go`
-
-and added flags in the function ([commit](https://github.com/T0mexX/hugo-sep/commit/97fc43e4f2f34f6b962e3d3f7fb4d5efacb2242e)):
 
 ```go
 // IsInt returns whether the given kind is an int.
@@ -706,7 +712,7 @@ func IsInt(kind reflect.Kind) bool {
 }
 ```
 
-&nbsp;  
+&nbsp;     
 **Function 2:** `IsUint` &nbsp;  
 **File:** `common/hreflect/helpers.go`
 
@@ -731,24 +737,114 @@ As we can see, the branch coverage for both of the functions was 0%:
 ![](readme_images/isInt_IsUint_Coverage_before.png)
 
 
+###### Tests
+
+
+***Function 1:*** `IsInt` &nbsp;  
+***File:*** `common/hreflect/helpers.go`
+***Link to Commit:*** [commit](https://github.com/T0mexX/hugo-sep/commit/97fc43e4f2f34f6b962e3d3f7fb4d5efacb2242e)
+
+
+```go
+t.Run("test for function 'IsInt'", func(t *testing.T) {
+
+	testCases := [10]struct {
+		input    reflect.Kind
+		expected bool
+	}{
+
+		{input: reflect.Int8, expected: true},
+		{input: reflect.Int16, expected: true},
+		{input: reflect.Int32, expected: true},
+		{input: reflect.Int64, expected: true},
+		{input: reflect.Int, expected: true},
+		{input: reflect.Bool, expected: false},
+		{input: reflect.Chan, expected: false},
+		{input: reflect.Uint16, expected: false},
+		{input: reflect.Uint32, expected: false},
+		{input: reflect.Uint8, expected: false},
+	}
+
+	for _, testCase := range testCases {
+		t.Run(fmt.Sprintf("TestCase: %v", testCase), func(t *testing.T) {
+			boolOut := IsInt(testCase.input)
+			assert.Equal(t, testCase.expected, boolOut)
+		})
+	}
+})
+```
+
+![](readme_images/verbose_tests_isInt.png)
+
+
+
+&nbsp;     
+***Function 2:*** `IsUint` &nbsp;  
+***File:*** `common/hreflect/helpers.go`
+***Link to Commit:*** [commit](https://github.com/T0mexX/hugo-sep/commit/fd3a355808d73476661b655fafe999ec984622a5)
+
+
+```go
+t.Run("test for function 'IsUint'", func(t *testing.T) {
+
+	testCases := [7]struct {
+		input    reflect.Kind
+		expected bool
+	}{
+
+		{input: reflect.Uint16, expected: true},
+		{input: reflect.Uint32, expected: true},
+		{input: reflect.Uint8, expected: true},
+		{input: reflect.Uint64, expected: true},
+		{input: reflect.Int, expected: false},
+		{input: reflect.Bool, expected: false},
+		{input: reflect.Chan, expected: false},
+	}
+
+	for _, testCase := range testCases {
+		t.Run(fmt.Sprintf("TestCase: %v", testCase), func(t *testing.T) {
+			boolOut := IsUint(testCase.input)
+			assert.Equal(t, testCase.expected, boolOut)
+		})
+	}
+})
+```
+
+![](readme_images/verbose_tests_isUint.png)
+
+
+
+&nbsp;
+&nbsp;
+###### Coverage Results After Improvements
+
+**Function 1:** `IsInt` &nbsp;  
+**File:** `common/hreflect/helpers.go`
+
+We went from *0* (*0%*) to *3/3* (*100%*) branches covered. The function takes multiple strings as parameter and checks if the first string provided is equal to any of the other input strings. To test the function we made a few test cases that check, given some input strings, if the return value is as expected.
+
+![](readme_images/isInt_Coverage_After.png)
+
+
+&nbsp;     
+**Function 2:** `IsUint` &nbsp;  
+**File:** `common/hreflect/helpers.go`
+
+We went from *0* (*0%*) to *3/3* (*100%*) branches covered. The function gets an input and then checks if, the given parameter, is of type `Float`. To test the function we made a few test cases that check, given different input types (`Uint`, `String`, `Bool`, `Int`, `Chan` and `Float`), that the outcome is as expected (ex: Uint8 -> False, Float8 -> True).
+
+
+![](readme_images/IsUnit_Coverage_After.png)
+
 &nbsp;  
 &nbsp;
 _______
 _______ 
 &nbsp;  
 &nbsp;  
-## Coverage improvement
 
 
-### Individual tests
-All tests related to this assignment and in the same package were defined hierarchically in the same test group.
-```
-func TestForAssignments(t *testing.T) {
-	t.Run(<testname>, <test>)
-	...
-}
-```
 
+<<<<<<< HEAD
 ***
 &nbsp;  
 ### Alessio [[commit](https://github.com/T0mexX/hugo-sep/commit/b2c03cb40f90bf92bbbe7aae49b229a3927ee393)]
@@ -904,33 +1000,65 @@ After:
 ![](readme_images/IsUnit_Coverage_After.png)
 
 
+&nbsp;  
+###### Setting Up 
 
+We set up our `BranchAnalyzer` ([commit]()).
+```go
+var ba = BranchAnalyzer{
+	filename: "strings.go",
+	branches: [19]bool{},
+	functions: [6]Function{
+		...
+		{name: "InSlice", startBranchId: 13, untilId: 16},
+		{name: "InSlicEqualFold", startBranchId: 16, untilId: 19},
+	},
+}
+```
+&nbsp;  
+***Function1:*** `InSlice` &nbsp;  
+***File:*** `common/hstrings/strings.go`
 
+```go
+func  InSlice(arr []string, el string) bool {
+	for  _, v  :=  range arr {
+		if v == el { // branch id = 13 (if condition evaluates to true at least once)
+			ba.reachedBranch(13)
+			return  true
+		}
+		// (else)
+		// branch id = 14 (if condition evaluates to false at least once)
+		ba.reachedBranch(14)
+	}
+	// (else)
+	// branch id = 15 (if condition always evaluates to false)
+	ba.reachedBranch(15)
+	return  false
+}
+```
+&nbsp;  
+***Function2:*** `InSliceEqualFold` &nbsp;  
+***File:*** `common/hstrings/strings.go`
+```go
+func  InSlicEqualFold(arr []string, el string) bool {
+	for  _, v  :=  range arr {
+		if strings.EqualFold(v, el) { // branch id = 16 (if condition evaluates to true at least 	once)
+			ba.reachedBranch(16)
+			return  true
+		}
+		// (else)
+		// branch id = 17 (if condition evaluates to false at least once)
+		ba.reachedBranch(17)
+	}
+	// (else)
+	// branch id = 18 (if condition always evaluates to false)
+	ba.reachedBranch(18)
+	return  false
 
+}
+```
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+>>>>>>> 34b4a507cdae6a8c68014b290372bed3044d6c3a
 &nbsp;  
 &nbsp;
 _______
@@ -952,15 +1080,15 @@ Statement coverage after improvements [[file](common/hstrings/statement_cover_li
 
 
 &nbsp;  
-### Package `` ``
+### Package ``hreflect``
 >***ADD SECTION***
 
-Statement coverage before improvements [[file]()].
-![]()
+Statement coverage before improvements [[file](common/hreflect/initial/statement_cover_list.txt)].
+![](readme_images/statement_coverage_list_before_hreflect.png)
 
 &nbsp;  
-Statement coverage after improvements [[file]()]:
-![]()
+Statement coverage after improvements [[file](common/hreflect/statement_cover_list.txt)]:
+![](readme_images/statement_coverage_list_after_hreflect.png)
 
 
 &nbsp;  
