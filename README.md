@@ -1,5 +1,6 @@
 
 # Report for Assignment 1
+
 ###### Group Members
 - Alessio Leonardo Tomei (lto223)
 - Marco Trapasso (mtr237)
@@ -31,6 +32,7 @@ _______
 ## Coverage measurement
 
 
+
 ### Existing tool
 
 We made use of ***Golang*** built in testing tools.
@@ -51,6 +53,8 @@ We can alternatevely use the following command to open a html page where we can 
 go tool cover -html .cover.out
 ```
 >***NOTE:*** red statements are not reached, while green statements are. The following is just an example section.
+
+
 
 ![](readme_images/html_coverage_example.png) <br><br>
 
@@ -350,10 +354,13 @@ ___
  
 
 &nbsp;  
-### Marco
+## Marco
+
 ###### Setting Up 
 
-We set up our `BranchAnalyzer` and tests ([commit](https://github.com/gohugoio/hugo/commit/6f60dc6125af5db5f8221185e82453280c7250ae)).
+We set up our `BranchAnalyze` [[commit](https://github.com/T0mexX/hugo-sep/commit/b2c03cb40f90bf92bbbe7aae49b229a3927ee393)].
+
+
 
 ```go
 var ba = BranchAnalyzer{
@@ -367,7 +374,7 @@ var ba = BranchAnalyzer{
 }
 ```
 &nbsp;  
-***Function1:*** `InSlice` &nbsp;  
+***Function1:*** `InSlice`           
 ***File:*** `common/hstrings/strings.go`
 
 ```go
@@ -388,7 +395,7 @@ func  InSlice(arr []string, el string) bool {
 }
 ```
 &nbsp;  
-***Function2:*** `InSliceEqualFold` &nbsp;  
+***Function2:*** `InSliceEqualFold`      
 ***File:*** `common/hstrings/strings.go`
 ```go
 func  InSlicEqualFold(arr []string, el string) bool {
@@ -416,9 +423,28 @@ By running our own branch coverage tool we have evaluated the branch coverage to
 &nbsp;  
 
 ![](readme_images/marco_string.png)
+&nbsp;  
+By running the built-in go tools, we check the statement coverage of the function  `InSlice`  and `InSliceEqualFold`.
+![](readme_images/marco_statement_cover.png)
 
-#### Test Implementation
-***Function1:*** `InSlice` &nbsp;   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&nbsp;  
+###### Tests
+***Function1:*** `InSlice` [[commit](https://github.com/gohugoio/hugo/commit/6f60dc6125af5db5f8221185e82453280c7250ae)].    
 ***File:*** `common/hstrings/strings.go`
 ```go
 
@@ -445,7 +471,7 @@ t.Run("test for function 'InSlice'", func(t *testing.T) {
 })
 ```
 &nbsp;   
-***Function2:*** `InSliceEqualFold` &nbsp;  
+***Function2:*** `InSliceEqualFold` [[commit](https://github.com/gohugoio/hugo/commit/6f60dc6125af5db5f8221185e82453280c7250ae)].  
 ***File:*** `common/hstrings/strings.go`
 
 ```go
@@ -472,17 +498,14 @@ t.Run("test for function 'InSliceEqualFold'", func(t *testing.T) {
 })
 ```
 &nbsp;  
-###### Test Results
+
 In the red box below we show the outcome of the tests for `InSlice`  and `InSliceEqualFold`.
 &nbsp;  
 
 ![](readme_images/marco_verbose_tests_string.png)
 
-By running the built-in go tools, we check the statement coverage of the function  `InSlice`  and `InSliceEqualFold`.
 &nbsp;  
 
-![](readme_images/marco_statement_cover.png)
-&nbsp;  
 
 ###### Coverage Result After Improvement
 
@@ -1127,8 +1150,9 @@ Statement coverage after improvements [[complete file](covers/final/statement_co
 - Added the `README.md` sections related to the above mentioned functions.
 
 #### Marco
-- TODO
-- TODO
+- Improved coverage for functions `InSlice` and `InSliceEqualFold` in file `common/hstrings/strings.go`
+- Added the `README.md` sections related to the above mentioned functions.
+ 
 
 #### Norah
 - TODO
