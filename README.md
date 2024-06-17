@@ -72,7 +72,7 @@ Statement coverage for package `hstrings` [[file]()]:
 
 &nbsp;  
 Statement coverage for package `hreflect` [[file]()]:
-![](readme_images/statement_coverage_list_before_hreflect.png.png)
+![](readme_images/statement_coverage_list_before_hreflect.png)
 
 
 
