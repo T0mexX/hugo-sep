@@ -51,6 +51,8 @@ We can alternatevely use the following command to open a html page where we can 
 ```
 go tool cover -html .cover.out
 ```
+>***NOTE:*** red statements are not reached, while green statements are. The following is just an example section.
+
 ![](readme_images/html_coverage_example.png) <br><br>
 
 From the html GUI we were able to identify which packages / files lacked ***statement coverage*** and consequently thos that also lacked ***branch coverage***.
@@ -232,6 +234,7 @@ func (s StringEqualFold) Eq(s2 any) bool {
 &nbsp; 
 ###### Coverage Results Before Improvements
 
+As we can see from both our own *branch coverage*, and the external *statement coverage* tools, there are 5 branches out of 6 that are not covered.
 ![](readme_images/strings_coverage_before_alessio.png)
 ![](readme_images/ToString_statement_coverage.png)
 ![](readme_images/Eq_statement_coverage.png)
