@@ -1,17 +1,17 @@
 Branch coverage for file 'helpers.go':
   function 'IsUint'
-    - 0 covered branches
+    - 2 covered branches
     - 2 total branches
-    - 0.00% branch coverage
+    - 100.00% branch coverage
   function 'IsInt'
-    - 0 covered branches
+    - 2 covered branches
     - 2 total branches
-    - 0.00% branch coverage
+    - 100.00% branch coverage
   function 'IsFloat'
-    - 0 covered branches
+    - 2 covered branches
     - 2 total branches
-    - 0.00% branch coverage
+    - 100.00% branch coverage
   Total for functions under analysis
-    - 0 covered branches
+    - 6 covered branches
     - 6 total branches
-    - 0.00% branch coverage
+    - 100.00% branch coverage
