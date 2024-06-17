@@ -11,7 +11,7 @@
 
 &nbsp;  
 ###### Programming language (for test purposes): [*Golang*](https://go.dev/)
-
+![](readme_images/golang_logo.png)
 
 
 
@@ -321,8 +321,8 @@ ___
 ## Norah
 ###### Setting Up
 
-**Function 1:** `EqualAny` &nbsp;  
-**File:** `common/hstrings/strings.go`
+***Function 1:*** `EqualAny` &nbsp;  
+***File:*** `common/hstrings/strings.go`
 
 The `BranchAnalyzer` and the flags for `common/hstrings/strings.go` was already set up ([commit](https://github.com/T0mexX/hugo-sep/commit/fd3a355808d73476661b655fafe999ec984622a5)):
 
@@ -398,10 +398,10 @@ As we can see, the branch coverage was 0%:
 ![](readme_images/EqualAny_Coverage_Before.png)
 
 
+&nbsp;  
+***Function 2:*** `IsFloat` &nbsp;  
+***File:*** `common/hreflect/helpers.go` 
 
-&nbsp;
-**Function 2:** `IsFloat` &nbsp;
-**File:** `common/hreflect/helpers.go` 
 As we can see, the branch coverage was 0%:
 
 ![](readme_images/IsFloat_Coverage_Before.png)
