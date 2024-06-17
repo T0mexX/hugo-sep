@@ -770,7 +770,7 @@ We went from *0* (*0%*) to *3/3* (*100%*) branches covered. The function gets an
 
 Before:
 
-![](readme_images/isInt_isUint_Coverage_Before.png)
+![](readme_images/isInt_isUint_Coverage_before.png)
 
 </br>
 After:
