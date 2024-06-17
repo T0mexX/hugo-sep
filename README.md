@@ -2,15 +2,16 @@
 # Report for Assignment 1
 *** ADD SOMETHING TO FILL THE GAP***
 
-## Project chosen: [hugo](https://github.com/gohugoio/hugo)
+## Project chosen: [HUGO](https://github.com/gohugoio/hugo)
 
 
-##### Lines of code: 
+###### Lines of code 
 
 ![](readme_images/lines_of_code.png)
 
-##### Programming language (for test purposes): <span style="color: blue;">*Golang*</span>
-
+&nbsp;  
+###### Programming language (for test purposes): [*Golang*](https://go.dev/)
+![](readme_images/golang_logo.png)
 
 
 
@@ -241,6 +242,12 @@ func (s StringEqualFold) Eq(s2 any) bool {
 &nbsp; 
 ###### Coverage Results Before Improvements
 
+![](readme_images/strings_coverage_before_alessio.png)
+![](readme_images/ToString_statement_coverage.png)
+![](readme_images/Eq_statement_coverage.png)
+
+&nbsp;  
+###### Tests
 Consider also the following declarations, that are needed to perform the tests.
 ```go
 type StringerImplementation struct{ str string }
@@ -303,19 +310,11 @@ t.Run("test for function 'Eq'", func(t *testing.T) {
 		}
 	})
 ```
-&nbsp;  
-######  Coverage Results Before Improvements
 
-![](readme_images/strings_coverage_before_alessio.png)
-![](readme_images/ToString_statement_coverage.png)
-![](readme_images/Eq_statement_coverage.png)
-
-&nbsp;  
-###### Tests
 ![](readme_images/verbose_tests_strings_alessio.png)
 
 &nbsp;  
-###### Coverage Improvements
+###### Coverage Results After Improvements
 Considering only these 2 functions, we went from *1/6* (*16.67%*) to *6/6* (*100%*) branches covered. Improving these 2 functions branch coverage concerned about passing parameter of different types. By defining test cases with parameter of type `string`, `Stringer` and a third different type (in our case `int`), we were able to reach all branches.
 ![](readme_images/strings_coverage_after_alessio.png)
 ![](readme_images/ToString_statement_coverage_after.png)
@@ -332,8 +331,8 @@ ___
 ## Norah
 ###### Setting Up
 
-**Function 1:** `EqualAny` &nbsp;  
-**File:** `common/hstrings/strings.go`
+***Function 1:*** `EqualAny` &nbsp;  
+***File:*** `common/hstrings/strings.go`
 
 The `BranchAnalyzer` and the flags for `common/hstrings/strings.go` was already set up ([commit](https://github.com/T0mexX/hugo-sep/commit/fd3a355808d73476661b655fafe999ec984622a5)):
 
@@ -409,10 +408,10 @@ As we can see, the branch coverage was 0%:
 ![](readme_images/EqualAny_Coverage_Before.png)
 
 
+&nbsp;  
+***Function 2:*** `IsFloat` &nbsp;  
+***File:*** `common/hreflect/helpers.go` 
 
-&nbsp;
-**Function 2:** `IsFloat` &nbsp;
-**File:** `common/hreflect/helpers.go` 
 As we can see, the branch coverage was 0%:
 
 ![](readme_images/IsFloat_Coverage_Before.png)
@@ -771,12 +770,12 @@ Statement coverage after improvements [[file](common/hstrings/statement_cover_li
 ### Package ``hreflect``
 >***ADD SECTION***
 
-Statement coverage before improvements [[file]()].
-![]()
+Statement coverage before improvements [[file](common/hreflect/initial/statement_cover_list.txt)].
+![](readme_images/statement_coverage_list_before_hreflect.png)
 
 &nbsp;  
-Statement coverage after improvements [[file]()]:
-![]()
+Statement coverage after improvements [[file](common/hreflect/statement_cover_list.txt)]:
+![](readme_images/statement_coverage_list_after_hreflect.png)
 
 
 &nbsp;  
