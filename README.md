@@ -657,8 +657,9 @@ Before:
 
 ![](readme_images/IsFloat_Coverage_Before.png)
 
-<br>
+</br>
 After:
+
 ![](readme_images/IsFloat_Coverage_After.png)
 
 
@@ -771,7 +772,7 @@ Before:
 
 ![](readme_images/IsInt_isUint_Coverage_Before.png)
 
-<br>
+</br>
 After:
 
 ![](readme_images/IsUnit_Coverage_After.png)
