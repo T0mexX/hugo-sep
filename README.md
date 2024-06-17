@@ -31,6 +31,7 @@ _______
 ## Coverage measurement
 
 
+
 ### Existing tool
 
 We made use of ***Golang*** built in testing tools.
@@ -336,7 +337,7 @@ ___
 ### Marco
 ###### Setting Up 
 
-We set up our `BranchAnalyzer` and tests ([commit](https://github.com/gohugoio/hugo/commit/6f60dc6125af5db5f8221185e82453280c7250ae)).
+We set up our `BranchAnalyze`
 
 ```go
 var ba = BranchAnalyzer{
@@ -350,7 +351,7 @@ var ba = BranchAnalyzer{
 }
 ```
 &nbsp;  
-***Function1:*** `InSlice` &nbsp;  
+***Function1:*** `InSlice` [[commit](https://github.com/gohugoio/hugo/commit/6f60dc6125af5db5f8221185e82453280c7250ae)].          
 ***File:*** `common/hstrings/strings.go`
 
 ```go
@@ -371,7 +372,7 @@ func  InSlice(arr []string, el string) bool {
 }
 ```
 &nbsp;  
-***Function2:*** `InSliceEqualFold` &nbsp;  
+***Function2:*** `InSliceEqualFold` [[commit](https://github.com/gohugoio/hugo/commit/6f60dc6125af5db5f8221185e82453280c7250ae)].     
 ***File:*** `common/hstrings/strings.go`
 ```go
 func  InSlicEqualFold(arr []string, el string) bool {
@@ -400,8 +401,8 @@ By running our own branch coverage tool we have evaluated the branch coverage to
 
 ![](readme_images/marco_string.png)
 
-#### Test Implementation
-***Function1:*** `InSlice` &nbsp;   
+###### Tests
+***Function1:*** `InSlice` [[commit](https://github.com/gohugoio/hugo/commit/6f60dc6125af5db5f8221185e82453280c7250ae)].    
 ***File:*** `common/hstrings/strings.go`
 ```go
 
@@ -428,7 +429,7 @@ t.Run("test for function 'InSlice'", func(t *testing.T) {
 })
 ```
 &nbsp;   
-***Function2:*** `InSliceEqualFold` &nbsp;  
+***Function2:*** `InSliceEqualFold` [[commit](https://github.com/gohugoio/hugo/commit/6f60dc6125af5db5f8221185e82453280c7250ae)].  
 ***File:*** `common/hstrings/strings.go`
 
 ```go
@@ -455,7 +456,7 @@ t.Run("test for function 'InSliceEqualFold'", func(t *testing.T) {
 })
 ```
 &nbsp;  
-###### Test Results
+
 In the red box below we show the outcome of the tests for `InSlice`  and `InSliceEqualFold`.
 &nbsp;  
 
