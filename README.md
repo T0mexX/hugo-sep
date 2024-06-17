@@ -336,7 +336,7 @@ ___
 ### Marco
 ###### Setting Up 
 
-We set up our `BranchAnalyzer` ([commit](https://github.com/gohugoio/hugo/commit/6f60dc6125af5db5f8221185e82453280c7250ae)).
+We set up our `BranchAnalyzer` and tests ([commit](https://github.com/gohugoio/hugo/commit/6f60dc6125af5db5f8221185e82453280c7250ae)).
 ```go
 var ba = BranchAnalyzer{
 	filename: "strings.go",
