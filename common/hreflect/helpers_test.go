@@ -153,6 +153,7 @@ func TestForAssignments(t *testing.T) {
 			input    reflect.Kind
 			expected bool
 		}{
+
 			{input: reflect.Uint16, expected: true},
 			{input: reflect.Uint32, expected: true},
 			{input: reflect.Uint8, expected: true},
