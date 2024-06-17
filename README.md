@@ -24,6 +24,8 @@
 
 &nbsp;  
 &nbsp;  
+_______
+_______
 &nbsp;  
 &nbsp;  
 ## Coverage measurement
@@ -75,7 +77,9 @@ Statement coverage ([complete file](covers/initial/cover_list.txt)):
 
 
 &nbsp;  
-&nbsp;  
+&nbsp;
+_______
+_______ 
 &nbsp;  
 &nbsp;  
 ## Your own coverage tool
@@ -227,42 +231,168 @@ func (s StringEqualFold) Eq(s2 any) bool {
 ___
 
 &nbsp;  
-#### Marco
+### Marco
 > **ADD SECTION** 
 
 ___
 
 &nbsp;  
-#### Norah
-> **ADD SECTION** 
+>### Norah
+#### Setting Up
+
+**Function 1:** `EqualAny` &nbsp;  
+**File:** `common/hstrings/strings.go`
+
+The `BranchAnalyzer` and the flags for `common/hstrings/strings.go` was already set up ([commit](https://github.com/T0mexX/hugo-sep/commit/fd3a355808d73476661b655fafe999ec984622a5)):
+
+```go
+var ba = BranchAnalyzer{
+	filename: "strings.go",
+	branches: [19]bool{},
+	functions: [6]Function{
+		...
+		{name: "EqualAny", startBranchId: 6, untilId: 9},
+		...
+	},
+}
+```
+
+```go
+func EqualAny(a string, b ...string) bool {
+	for _, s := range b {
+		if a == s { // branch id = 6 (if condition evaluates to true at least once)
+			ba.reachedBranch(6)
+			return true
+		}
+		// (else)
+		// branch id = 7 (if condition evaluates to false at least once)
+		ba.reachedBranch(7)
+	}
+	// branch id = 8 (if condition always evaluates to false)
+	ba.reachedBranch(8)
+	return false 
+}
+```
 
 
+&nbsp;
+**Function2:** `IsFloat` &nbsp;  
+**File:** `common/hreflect/helpers.go`
+
+We set up our `BranchAnalyzer` for `common/hreflect/helpers.go` ([commit](https://github.com/T0mexX/hugo-sep/commit/fd3a355808d73476661b655fafe999ec984622a5)):
+
+```go
+var ba = BranchAnalyzer{
+	filename: "helpers.go",
+	branches: [6]bool{},
+	functions: [3]Function{
+		...
+		{name: "IsFloat", startBranchId: 4, untilId: 6},
+	},
+}
+```
+and added flags in the function ([commit](https://github.com/T0mexX/hugo-sep/commit/97fc43e4f2f34f6b962e3d3f7fb4d5efacb2242e)):
+```go
+// IsFloat returns whether the given kind is a float.
+func IsFloat(kind reflect.Kind) bool {
+	switch kind {
+	case reflect.Float32, reflect.Float64:
+		ba.reachedBranch(4)
+		return true // branch id = 4
+	default:
+		ba.reachedBranch(5)
+		return false // branch id = 5
+	}
+}
+```
+
+&nbsp;
+#### Coverage Result Before Improvements
+
+**Function 1:** `EqualAny` &nbsp;
+As we can see, the branch coverage was 0%:
+
+![](readme_images/EqualAny_Coverage_Before.png)
 
 
+&nbsp;
+**Function 2:** `IsFloat` &nbsp; 
+As we can see, the branch coverage was 0%:
+
+![](readme_images/IsFloat_Coverage_Before.png)
+
+&nbsp;
+___
+&nbsp; 
+>### Extra functions
+
+#### Setting Up
+
+We set up our `BranchAnalyzer` for `common/hreflect/helpers.go` ([commit](https://github.com/T0mexX/hugo-sep/commit/fd3a355808d73476661b655fafe999ec984622a5)):
+
+```go
+var ba = BranchAnalyzer{
+	filename: "helpers.go",
+	branches: [6]bool{},
+	functions: [3]Function{
+		{name: "IsUint", startBranchId: 0, untilId: 2},
+		{name: "IsInt", startBranchId: 2, untilId: 4},
+		...
+	},
+}
+```
 
 
+&nbsp;
+**Function 1:** `IsInt` &nbsp;  
+**File:** `common/hreflect/helpers.go`
+
+and added flags in the function ([commit](https://github.com/T0mexX/hugo-sep/commit/97fc43e4f2f34f6b962e3d3f7fb4d5efacb2242e)):
+
+```go
+// IsInt returns whether the given kind is an int.
+func IsInt(kind reflect.Kind) bool {
+	switch kind {
+	case reflect.Int, reflect.Int8, reflect.Int16, reflect.Int32, reflect.Int64:
+		ba.reachedBranch(2)
+		return true // branch id = 2 
+	default:
+		ba.reachedBranch(3)
+		return false // branch id = 3
+	}
+}
+```
 
 
+&nbsp;
+**Function 2:** `IsUint` &nbsp;  
+**File:** `common/hreflect/helpers.go`
 
+```go
+// IsUint returns whether the given kind is an uint.
+func IsUint(kind reflect.Kind) bool {
+	switch kind {
+	case reflect.Uint, reflect.Uint8, reflect.Uint16, reflect.Uint32, reflect.Uint64:
+		ba.reachedBranch(0)
+		return true	// branch id = 0 
+	default:
+		ba.reachedBranch(1)
+		return false	// branch id = 1 
+	}
+}
+```
 
+&nbsp;  
+#### Coverage Result Before Improvements
+As we can see, the branch coverage for both of the functions was 0%:
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+![](readme_images/isInt_IsUint_Coverage_before.png)
 
 
 &nbsp;  
-&nbsp;  
+&nbsp;
+_______
+_______ 
 &nbsp;  
 &nbsp;  
 ## Coverage improvement
@@ -430,86 +560,6 @@ ___
 
 &nbsp;
 ### Norah
->**MOVE STUFF IN PREVIOUS SECTION**
-### <span style="color: #006699;">Setting Up</span>
-
-**Function 1:** `EqualAny` &nbsp;  
-**File:** `common/hstrings/strings.go`
-
-The `BranchAnalyzer` and the flags for `common/hstrings/strings.go` was already set up ([commit](https://github.com/T0mexX/hugo-sep/commit/fd3a355808d73476661b655fafe999ec984622a5)):
-
-```go
-var ba = BranchAnalyzer{
-	filename: "strings.go",
-	branches: [19]bool{},
-	functions: [6]Function{
-		...
-		{name: "EqualAny", startBranchId: 6, untilId: 9},
-		...
-	},
-}
-```
-
-```go
-func EqualAny(a string, b ...string) bool {
-	for _, s := range b {
-		if a == s { // branch id = 6 (if condition evaluates to true at least once)
-			ba.reachedBranch(6)
-			return true
-		}
-		// (else)
-		// branch id = 7 (if condition evaluates to false at least once)
-		ba.reachedBranch(7)
-	}
-	// branch id = 8 (if condition always evaluates to false)
-	ba.reachedBranch(8)
-	return false 
-}
-```
-
-As we can see, the branch coverage was 0%:
-
-![](readme_images/EqualAny_Coverage_Before.png)
-
-
-**Function2:** `IsFloat` &nbsp;  
-**File:** `common/hreflect/helpers.go`
-
-We set up our `BranchAnalyzer` for `common/hreflect/helpers.go` ([commit]([text](https://github.com/T0mexX/hugo-sep/commit/fd3a355808d73476661b655fafe999ec984622a5))):
-
-```go
-var ba = BranchAnalyzer{
-	filename: "helpers.go",
-	branches: [6]bool{},
-	functions: [3]Function{
-		...
-		{name: "IsFloat", startBranchId: 4, untilId: 6},
-	},
-}
-```
-and added flags in the function ([commit](https://github.com/T0mexX/hugo-sep/commit/97fc43e4f2f34f6b962e3d3f7fb4d5efacb2242e)):
-```go
-// IsFloat returns whether the given kind is a float.
-func IsFloat(kind reflect.Kind) bool {
-	switch kind {
-	case reflect.Float32, reflect.Float64:
-		ba.reachedBranch(4)
-		return true // branch id = 4
-	default:
-		ba.reachedBranch(5)
-		return false // branch id = 5
-	}
-}
-```
-
-As we can see, the branch coverage was 0%:
-
-![](readme_images/IsFloat_Coverage_Before.png)
-
-&nbsp;  
-### Coverage improvement
-
-#### Individual tests
 
 ##### Function 1: `EqualAny` ([commit](https://github.com/T0mexX/hugo-sep/commit/95a766930486ea4433912cd7bad2480c1df21ba1))
 
@@ -539,19 +589,28 @@ t.Run("test for function 'EqualAny'", func (t *testing.T) {
 })
 ```
 
+
+&nbsp;
+&nbsp;
 ###### Tests Results
 ![](readme_images/verbose_tests_equalAny.png)
 
-###### Coverage improvements
+
+&nbsp;
+&nbsp;
+###### Coverage improvement
 We went from *0* (*0%*) to *3/3* (*100%*) branches covered. The function takes multiple strings as parameter and checks if the first string provided is equal to any of the other input strings. To test the function we made a few test cases that check, given some input strings, if the return value is as expected.
 
 Before:
 
 ![](readme_images/EqualAny_Coverage_Before.png)
 
+&nbsp;
 After:
 
 ![](readme_images/EqualAny_Coverage_After.png)
+
+
 
 &nbsp;
 ##### Function 2: `isFloat` ([commit](https://github.com/T0mexX/hugo-sep/commit/97fc43e4f2f34f6b962e3d3f7fb4d5efacb2242e))
@@ -583,80 +642,31 @@ t.Run("test for function 'IsFloat'", func(t *testing.T) {
 })
 ```
 
+
+&nbsp;
+&nbsp;
 ###### Tests Results
+
 ![](readme_images/verbose_tests_isFloat.png)
 
-###### Coverage improvements
+
+&nbsp;
+&nbsp;
+###### Coverage improvement
 We went from *0* (*0%*) to *3/3* (*100%*) branches covered. The function gets an input and then checks if, the given parameter, is of type `Float`. To test the function we made a few test cases that check, given different input types (`Uint`, `String`, `Bool`, `Int`, `Chan` and `Float`), that the outcome is as expected (ex: Uint8 -> False, Float8 -> True).
 
 Before:
 ![](readme_images/IsFloat_Coverage_Before.png)
 
+&nbsp;
 After:
 ![](readme_images/IsFloat_Coverage_After.png)
 
 
-## Extra functions
+___
 
-### Setting Up
-
-We set up our `BranchAnalyzer` for `common/hreflect/helpers.go` ([commit](https://github.com/T0mexX/hugo-sep/commit/fd3a355808d73476661b655fafe999ec984622a5)):
-
-```go
-var ba = BranchAnalyzer{
-	filename: "helpers.go",
-	branches: [6]bool{},
-	functions: [3]Function{
-		{name: "IsUint", startBranchId: 0, untilId: 2},
-		{name: "IsInt", startBranchId: 2, untilId: 4},
-		...
-	},
-}
-```
-
-**Function 1:** `IsInt` &nbsp;  
-**File:** `common/hreflect/helpers.go`
-
-and added flags in the function ([commit](https://github.com/T0mexX/hugo-sep/commit/97fc43e4f2f34f6b962e3d3f7fb4d5efacb2242e)):
-
-```go
-// IsInt returns whether the given kind is an int.
-func IsInt(kind reflect.Kind) bool {
-	switch kind {
-	case reflect.Int, reflect.Int8, reflect.Int16, reflect.Int32, reflect.Int64:
-		ba.reachedBranch(2)
-		return true // branch id = 2 
-	default:
-		ba.reachedBranch(3)
-		return false // branch id = 3
-	}
-}
-```
-
-**Function 2:** `IsUint` &nbsp;  
-**File:** `common/hreflect/helpers.go`
-
-```go
-// IsUint returns whether the given kind is an uint.
-func IsUint(kind reflect.Kind) bool {
-	switch kind {
-	case reflect.Uint, reflect.Uint8, reflect.Uint16, reflect.Uint32, reflect.Uint64:
-		ba.reachedBranch(0)
-		return true	// branch id = 0 
-	default:
-		ba.reachedBranch(1)
-		return false	// branch id = 1 
-	}
-}
-```
-As we can see, the branch coverage for both of the functions was 0%:
-
-![](readme_images/isInt_IsUint_Coverage_before.png)
-
-&nbsp;  
-### Coverage improvement
-
-#### Individual tests
+&nbsp; 
+### Extra functions
 
 ##### Function 1: `IsInt` ([commit](https://github.com/T0mexX/hugo-sep/commit/97fc43e4f2f34f6b962e3d3f7fb4d5efacb2242e))
 
@@ -690,20 +700,31 @@ t.Run("test for function 'IsInt'", func(t *testing.T) {
 })
 ```
 
+
+&nbsp;
+&nbsp;
 ###### Tests Results
+
 ![](readme_images/verbose_tests_isInt.png)
 
-###### Coverage improvements
+
+&nbsp;
+&nbsp;
+###### Coverage improvement
 We went from *0* (*0%*) to *3/3* (*100%*) branches covered. The function takes multiple strings as parameter and checks if the first string provided is equal to any of the other input strings. To test the function we made a few test cases that check, given some input strings, if the return value is as expected.
 
 Before:
 
 ![](readme_images/IsInt_isUint_Coverage_before.png)
 
+&nbsp;
 After:
 
 ![](readme_images/IsInt_Coverage_After.png)
 
+
+
+&nbsp;
 &nbsp;
 ##### Function 2: `isUint` ([commit](https://github.com/T0mexX/hugo-sep/commit/fd3a355808d73476661b655fafe999ec984622a5))
 
@@ -733,18 +754,36 @@ t.Run("test for function 'IsUint'", func(t *testing.T) {
 })
 ```
 
+
+&nbsp;
+&nbsp;
 ###### Tests Results
+
 ![](readme_images/verbose_tests_isUint.png)
 
-###### Coverage improvements
+
+
+&nbsp;
+&nbsp;
+###### Coverage improvement
 We went from *0* (*0%*) to *3/3* (*100%*) branches covered. The function gets an input and then checks if, the given parameter, is of type `Float`. To test the function we made a few test cases that check, given different input types (`Uint`, `String`, `Bool`, `Int`, `Chan` and `Float`), that the outcome is as expected (ex: Uint8 -> False, Float8 -> True).
 
 Before:
+
 ![](readme_images/IsInt_isUint_Coverage_Before.png)
 
+&nbsp;
 After:
+
 ![](readme_images/IsUnit_Coverage_After.png)
 
+
+&nbsp;  
+&nbsp;
+_______
+_______ 
+&nbsp;  
+&nbsp;  
 ## Overall
 
 <Provide a screenshot of the old coverage results by running an existing tool (the same as you already showed above)>
