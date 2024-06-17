@@ -174,15 +174,12 @@ func TestMain(m *testing.M) {
 &nbsp;  
 
 ### Alessio
-***Function1:*** `ToString` &nbsp;  
-***File:*** `common/hstrings/strings.go`
-
-***Function2:*** `Eq` &nbsp;  
-***File:*** `common/hstrings/strings.go`
 
 
-#### Setting Up
-We set up our `BranchAnalyzer` ([commit]([text](https://github.com/T0mexX/hugo-sep/commit/b2c03cb40f90bf92bbbe7aae49b229a3927ee393))).
+
+&nbsp;  
+###### Setting Up
+We set up our `BranchAnalyzer` and tests [[commit]([text](https://github.com/T0mexX/hugo-sep/commit/b2c03cb40f90bf92bbbe7aae49b229a3927ee393))].
 ```go
 var ba = BranchAnalyzer{
 	filename: "strings.go",
@@ -194,6 +191,10 @@ var ba = BranchAnalyzer{
 	},
 }
 ```
+
+&nbsp;  
+***Function1:*** `ToString` &nbsp;  
+***File:*** `common/hstrings/strings.go`
 
 ```go
 func ToString(v any) (string, bool) {
@@ -210,6 +211,11 @@ func ToString(v any) (string, bool) {
 	return "", false 
 }
 ```
+
+&nbsp;  
+***Function2:*** `Eq` &nbsp;  
+***File:*** `common/hstrings/strings.go`
+
 ```go
 func (s StringEqualFold) Eq(s2 any) bool {
 	switch ss := s2.(type) {
@@ -226,7 +232,7 @@ func (s StringEqualFold) Eq(s2 any) bool {
 }
 ```
 &nbsp;  
-#### Coverage Result Before Improvements
+###### Coverage Result Before Improvements
 ![](readme_images/strings_coverage_before_alessio.png)
 ![](readme_images/Eq_statement_coverage.png)
 ![](readme_images/ToString_statement_coverage.png)
@@ -240,8 +246,8 @@ ___
 ___
 
 &nbsp;  
->### Norah
-#### Setting Up
+### Norah
+###### Setting Up
 
 **Function 1:** `EqualAny` &nbsp;  
 **File:** `common/hstrings/strings.go`
@@ -310,7 +316,7 @@ func IsFloat(kind reflect.Kind) bool {
 ```
 
 &nbsp;
-#### Coverage Result Before Improvements
+###### Coverage Result Before Improvements
 
 **Function 1:** `EqualAny` &nbsp;
 As we can see, the branch coverage was 0%:
@@ -329,7 +335,7 @@ ___
 &nbsp; 
 >### Extra functions
 
-#### Setting Up
+###### Setting Up
 
 We set up our `BranchAnalyzer` for `common/hreflect/helpers.go` ([commit](https://github.com/T0mexX/hugo-sep/commit/fd3a355808d73476661b655fafe999ec984622a5)):
 
@@ -345,7 +351,7 @@ var ba = BranchAnalyzer{
 }
 ```
 
-
+&nbsp;  
 **Function 1:** `IsInt` &nbsp;  
 **File:** `common/hreflect/helpers.go`
 
@@ -365,7 +371,7 @@ func IsInt(kind reflect.Kind) bool {
 }
 ```
 
-
+&nbsp;  
 **Function 2:** `IsUint` &nbsp;  
 **File:** `common/hreflect/helpers.go`
 
@@ -384,7 +390,7 @@ func IsUint(kind reflect.Kind) bool {
 ```
 
 &nbsp;  
-#### Coverage Result Before Improvements
+###### Coverage Results Before Improvements
 As we can see, the branch coverage for both of the functions was 0%:
 
 ![](readme_images/isInt_IsUint_Coverage_before.png)
@@ -474,18 +480,18 @@ t.Run("test for function 'Eq'", func(t *testing.T) {
 	})
 ```
 &nbsp;  
-#### Coverage Result Before Improvements
+######  Coverage Results Before Improvements
 
 ![](readme_images/strings_coverage_before_alessio.png)
 ![](readme_images/ToString_statement_coverage.png)
 ![](readme_images/Eq_statement_coverage.png)
 
 &nbsp;  
-#### Tests
+###### Tests
 ![](readme_images/verbose_tests_strings_alessio.png)
 
 &nbsp;  
-#### Coverage Improvements
+###### Coverage Improvements
 Considering only these 2 functions, we went from *1/6* (*16.67%*) to *6/6* (*100%*) branches covered. Improving these 2 functions branch coverage concerned about passing parameter of different types. By defining test cases with parameter of type `string`, `Stringer` and a third different type (in our case `int`), we were able to reach all branches.
 ![](readme_images/strings_coverage_after_alessio.png)
 ![](readme_images/ToString_statement_coverage_after.png)
@@ -497,7 +503,8 @@ ___
 ### Marco
 >**MOVE STUFF IN PREVIOUS SECTION**
 
-#### Setting Up 
+&nbsp;  
+###### Setting Up 
 
 We set up our `BranchAnalyzer` ([commit]()).
 ```go
@@ -553,18 +560,19 @@ func  InSlicEqualFold(arr []string, el string) bool {
 
 }
 ```
+
+
 &nbsp;  
-#### Coverage Result Before Improvements
+###### Coverage Result Before Improvements
 ![](readme_images/strings_coverage_before_alessio.png)
 
 ___
 
 &nbsp;
->### Norah
+### Norah
 
 ##### Function 1: `EqualAny` ([commit](https://github.com/T0mexX/hugo-sep/commit/95a766930486ea4433912cd7bad2480c1df21ba1))
 
-###### Code
 ```go
 t.Run("test for function 'EqualAny'", func (t *testing.T) {
 	testCases:= [5]struct {
@@ -602,13 +610,9 @@ t.Run("test for function 'EqualAny'", func (t *testing.T) {
 ###### Coverage improvement
 We went from *0* (*0%*) to *3/3* (*100%*) branches covered. The function takes multiple strings as parameter and checks if the first string provided is equal to any of the other input strings. To test the function we made a few test cases that check, given some input strings, if the return value is as expected.
 
-Before:
-
 ![](readme_images/EqualAny_Coverage_Before.png)
 
-<br>
-After:
-
+&nbsp;  
 ![](readme_images/EqualAny_Coverage_After.png)
 
 
