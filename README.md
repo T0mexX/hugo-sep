@@ -404,6 +404,8 @@ By running our own branch coverage tool we have evaluated the branch coverage to
 &nbsp;  
 
 ![](readme_images/marco_string.png)
+&nbsp;  
+By running the built-in go tools, we check the statement coverage of the function  `InSlice`  and `InSliceEqualFold`.
 ![](readme_images/marco_statement_cover.png)
 
 ###### Tests
@@ -467,8 +469,8 @@ In the red box below we show the outcome of the tests for `InSlice`  and `InSlic
 
 ![](readme_images/marco_verbose_tests_string.png)
 
-By running the built-in go tools, we check the statement coverage of the function  `InSlice`  and `InSliceEqualFold`.
 &nbsp;  
+
 
 ###### Coverage Result After Improvement
 
