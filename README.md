@@ -775,7 +775,7 @@ Before:
 </br>
 After:
 
-![](readme_images/isUnit_Coverage_After.png)
+![](readme_images/IsUnit_Coverage_After.png)
 
 
 &nbsp;  
