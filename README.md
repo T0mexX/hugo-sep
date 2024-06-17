@@ -184,6 +184,23 @@ func TestForAssignments(t *testing.T) {
 }
 ```
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 &nbsp;  
 &nbsp;
 _______
@@ -575,9 +592,9 @@ As we can see, the branch coverage was 0%:
 &nbsp;
 
 
-###### Tests [commit_func1](https://github.com/T0mexX/hugo-sep/commit/95a766930486ea4433912cd7bad2480c1df21ba1), [commit_func2](https://github.com/T0mexX/hugo-sep/commit/97fc43e4f2f34f6b962e3d3f7fb4d5efacb2242e)
+###### Tests
 
-***Function 1:*** `EqualAny` &nbsp;  
+***Function 1:*** `EqualAny` [[commit](https://github.com/T0mexX/hugo-sep/commit/95a766930486ea4433912cd7bad2480c1df21ba1)]&nbsp;  
 ***File:*** `common/hstrings/strings.go`
 
 ```go
@@ -610,7 +627,7 @@ t.Run("test for function 'EqualAny'", func (t *testing.T) {
 
 
 &nbsp;  
-***Function 2:*** `IsFloat` &nbsp;
+***Function 2:*** `IsFloat` [[commit](https://github.com/T0mexX/hugo-sep/commit/97fc43e4f2f34f6b962e3d3f7fb4d5efacb2242e)]&nbsp;
 ***File:*** `common/hreflect/helpers.go` 
 
 
@@ -738,10 +755,10 @@ As we can see, the branch coverage for both of the functions was 0%:
 ![](readme_images/IsUint_statement_coverage.png)
 
 
-###### Tests [commit_func1](https://github.com/T0mexX/hugo-sep/commit/97fc43e4f2f34f6b962e3d3f7fb4d5efacb2242e), [commit_func2](https://github.com/T0mexX/hugo-sep/commit/fd3a355808d73476661b655fafe999ec984622a5)
+###### Tests
 
 
-***Function 1:*** `IsInt` &nbsp;  
+***Function 1:*** `IsInt` [[commit](https://github.com/T0mexX/hugo-sep/commit/97fc43e4f2f34f6b962e3d3f7fb4d5efacb2242e)]&nbsp;  
 ***File:*** `common/hreflect/helpers.go`
 
 
@@ -779,7 +796,7 @@ t.Run("test for function 'IsInt'", func(t *testing.T) {
 
 
 &nbsp;     
-***Function 2:*** `IsUint` &nbsp;  
+***Function 2:*** `IsUint` [[commit](https://github.com/T0mexX/hugo-sep/commit/fd3a355808d73476661b655fafe999ec984622a5)]&nbsp;  
 ***File:*** `common/hreflect/helpers.go`
 
 
@@ -1058,7 +1075,6 @@ func  InSlicEqualFold(arr []string, el string) bool {
 }
 ```
 
->>>>>>> 34b4a507cdae6a8c68014b290372bed3044d6c3a
 &nbsp;  
 &nbsp;
 _______
@@ -1081,7 +1097,6 @@ Statement coverage after improvements [[file](common/hstrings/statement_cover_li
 
 &nbsp;  
 ### Package ``hreflect``
->***ADD SECTION***
 
 Statement coverage before improvements [[file](common/hreflect/initial/statement_cover_list.txt)].
 ![](readme_images/statement_coverage_list_before_hreflect.png)
