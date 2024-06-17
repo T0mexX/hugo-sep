@@ -191,8 +191,10 @@ func TestForAssignments(t *testing.T) {
 &nbsp;  
 &nbsp;
 _______
-_______ 
-&nbsp;  
+_______
+
+&nbsp;
+![](readme_images/Marco__2_-removebg.png)
 &nbsp; 
 ## Alessio
 ###### Setting Up
