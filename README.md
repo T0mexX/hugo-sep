@@ -345,8 +345,8 @@ func  InSlicEqualFold(arr []string, el string) bool {
 ```
 &nbsp;  
 #### Coverage Result Before Improvements
-![](readme_images/strings_coverage_before_alessio.png)
-![]
+![](readme_images/marco_string.png)
+![](readme_images/marco_verbose_tests_string.png)
 
 
 <Function 1 name>
