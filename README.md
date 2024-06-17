@@ -408,6 +408,22 @@ By running our own branch coverage tool we have evaluated the branch coverage to
 By running the built-in go tools, we check the statement coverage of the function  `InSlice`  and `InSliceEqualFold`.
 ![](readme_images/marco_statement_cover.png)
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&nbsp;  
 ###### Tests
 ***Function1:*** `InSlice` [[commit](https://github.com/gohugoio/hugo/commit/6f60dc6125af5db5f8221185e82453280c7250ae)].    
 ***File:*** `common/hstrings/strings.go`
