@@ -173,8 +173,6 @@ func TestMain(m *testing.M) {
 }
 ```
 
-***
-&nbsp;  
 
 ### Tests Hierarchy
 All tests related to this assignment and in the same package were defined hierarchically in the same test group.
