@@ -337,6 +337,7 @@ ___
 ###### Setting Up 
 
 We set up our `BranchAnalyzer` and tests ([commit](https://github.com/gohugoio/hugo/commit/6f60dc6125af5db5f8221185e82453280c7250ae)).
+
 ```go
 var ba = BranchAnalyzer{
 	filename: "strings.go",
@@ -393,7 +394,7 @@ func  InSlicEqualFold(arr []string, el string) bool {
 
 
 &nbsp;  
-#### Coverage Result Before Improvements
+###### Coverage Result Before Improvements
 By running our own branch coverage tool we have evaluated the branch coverage to 0/3 (0%) for both the functions.
 &nbsp;  
 
@@ -466,7 +467,7 @@ By running the built-in go tools, we check the statement coverage of the functio
 ![](readme_images/marco_statement_cover.png)
 &nbsp;  
 
-##### Coverage Result After Improvement
+###### Coverage Result After Improvement
 
 We improved the test coverage from 0 (0%) to 3/3 (100%) branches covered in both the functions. The function `InSlice` checks if a string is contained in an Array[] of strings. Additionally, the function `InSliceEqualFold` takes as parameters an Array[] of string and a string, it creates an `EqualFold` object with those two parameters and check if the string is contained in the Array[]. Thanks to this behavioural similarity we reused the same test adopted in the previous function (`InSlice)`.  
 &nbsp;  
@@ -572,7 +573,7 @@ As we can see, the branch coverage was 0%:
 &nbsp;
 
 
-###### Tests
+###### Test Implementation
 
 ***Function 1:*** `EqualAny` &nbsp;  
 ***File:*** `common/hstrings/strings.go`
