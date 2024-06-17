@@ -231,12 +231,89 @@ func (s StringEqualFold) Eq(s2 any) bool {
 	return false 
 }
 ```
-&nbsp;  
-###### Coverage Result Before Improvements
-![](readme_images/strings_coverage_before_alessio.png)
-![](readme_images/Eq_statement_coverage.png)
-![](readme_images/ToString_statement_coverage.png)
 
+&nbsp; 
+###### Coverage Results Before Improvements
+
+Consider also the following declarations, that are needed to perform the tests.
+```go
+type StringerImplementation struct{ str string }
+func (si StringerImplementation) String() string { return si.str }
+```
+
+&nbsp;  
+***Function1:*** `ToString` &nbsp;  
+***File:*** `common/hstrings/strings.go`
+
+```go
+t.Run("test for function 'ToString'", func(t *testing.T) {
+		testCases := [3]struct {
+			input        any
+			expectedStr  string
+			expectedBool bool
+		}{
+			{input: "a string", expectedStr: "a string", expectedBool: true},
+			{
+				input:        StringerImplementation{"This is a Stringer implementation."},
+				expectedStr:  "This is a Stringer implementation.",
+				expectedBool: true,
+			},
+			{input: 2, expectedStr: "", expectedBool: false},
+		}
+
+		for _, testCase := range testCases {
+			t.Run(fmt.Sprintf("TestCase: %v", testCase), func(t *testing.T) {
+				strOut, boolOut := ToString(testCase.input)
+				assert.Equal(t, testCase.expectedStr, strOut)
+				assert.Equal(t, testCase.expectedBool, boolOut)
+			})
+		}
+	})
+```
+&nbsp;  
+
+***Function2:*** `Eq` &nbsp;  
+***File:*** `common/hstrings/strings.go`
+
+```go
+t.Run("test for function 'Eq'", func(t *testing.T) {
+		funReceiver := StringEqualFold("a string")
+		testCases := [5]struct {
+			input    any
+			expected bool
+		}{
+			{input: "a string", expected: true},
+			{input: "a string but the wrong one", expected: false},
+			{input: "a string", expected: true},
+			{input: StringerImplementation{"a string but the wrong one"}, expected: false},
+			{input: 4, expected: false},
+		}
+
+		for _, testCase := range testCases {
+			t.Run(fmt.Sprintf("TestCase: %v", testCase), func(t *testing.T) {
+				boolOut := funReceiver.Eq(testCase.input)
+				assert.Equal(t, testCase.expected, boolOut)
+			})
+		}
+	})
+```
+&nbsp;  
+######  Coverage Results Before Improvements
+
+![](readme_images/strings_coverage_before_alessio.png)
+![](readme_images/ToString_statement_coverage.png)
+![](readme_images/Eq_statement_coverage.png)
+
+&nbsp;  
+###### Tests
+![](readme_images/verbose_tests_strings_alessio.png)
+
+&nbsp;  
+###### Coverage Improvements
+Considering only these 2 functions, we went from *1/6* (*16.67%*) to *6/6* (*100%*) branches covered. Improving these 2 functions branch coverage concerned about passing parameter of different types. By defining test cases with parameter of type `string`, `Stringer` and a third different type (in our case `int`), we were able to reach all branches.
+![](readme_images/strings_coverage_after_alessio.png)
+![](readme_images/ToString_statement_coverage_after.png)
+![](readme_images/Eq_statement_coverage_after.png)
 ___
 
 &nbsp;  
@@ -417,85 +494,7 @@ func TestForAssignments(t *testing.T) {
 ***
 &nbsp;  
 ### Alessio [[commit](https://github.com/T0mexX/hugo-sep/commit/b2c03cb40f90bf92bbbe7aae49b229a3927ee393)]
-Consider also the following declarations, that are needed to perform the tests.
-```go
-type StringerImplementation struct{ str string }
-func (si StringerImplementation) String() string { return si.str }
-```
 
-&nbsp;  
-***Function1:*** `ToString` &nbsp;  
-***File:*** `common/hstrings/strings.go`
-
-```go
-t.Run("test for function 'ToString'", func(t *testing.T) {
-		testCases := [3]struct {
-			input        any
-			expectedStr  string
-			expectedBool bool
-		}{
-			{input: "a string", expectedStr: "a string", expectedBool: true},
-			{
-				input:        StringerImplementation{"This is a Stringer implementation."},
-				expectedStr:  "This is a Stringer implementation.",
-				expectedBool: true,
-			},
-			{input: 2, expectedStr: "", expectedBool: false},
-		}
-
-		for _, testCase := range testCases {
-			t.Run(fmt.Sprintf("TestCase: %v", testCase), func(t *testing.T) {
-				strOut, boolOut := ToString(testCase.input)
-				assert.Equal(t, testCase.expectedStr, strOut)
-				assert.Equal(t, testCase.expectedBool, boolOut)
-			})
-		}
-	})
-```
-&nbsp;  
-
-***Function2:*** `Eq` &nbsp;  
-***File:*** `common/hstrings/strings.go`
-
-```go
-t.Run("test for function 'Eq'", func(t *testing.T) {
-		funReceiver := StringEqualFold("a string")
-		testCases := [5]struct {
-			input    any
-			expected bool
-		}{
-			{input: "a string", expected: true},
-			{input: "a string but the wrong one", expected: false},
-			{input: "a string", expected: true},
-			{input: StringerImplementation{"a string but the wrong one"}, expected: false},
-			{input: 4, expected: false},
-		}
-
-		for _, testCase := range testCases {
-			t.Run(fmt.Sprintf("TestCase: %v", testCase), func(t *testing.T) {
-				boolOut := funReceiver.Eq(testCase.input)
-				assert.Equal(t, testCase.expected, boolOut)
-			})
-		}
-	})
-```
-&nbsp;  
-######  Coverage Results Before Improvements
-
-![](readme_images/strings_coverage_before_alessio.png)
-![](readme_images/ToString_statement_coverage.png)
-![](readme_images/Eq_statement_coverage.png)
-
-&nbsp;  
-###### Tests
-![](readme_images/verbose_tests_strings_alessio.png)
-
-&nbsp;  
-###### Coverage Improvements
-Considering only these 2 functions, we went from *1/6* (*16.67%*) to *6/6* (*100%*) branches covered. Improving these 2 functions branch coverage concerned about passing parameter of different types. By defining test cases with parameter of type `string`, `Stringer` and a third different type (in our case `int`), we were able to reach all branches.
-![](readme_images/strings_coverage_after_alessio.png)
-![](readme_images/ToString_statement_coverage_after.png)
-![](readme_images/Eq_statement_coverage_after.png)
 
 ___
 
