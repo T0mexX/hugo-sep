@@ -1,0 +1,14 @@
+github.com/gohugoio/hugo/common/hstrings/strings.go:37:		EqualFold		100.0%
+github.com/gohugoio/hugo/common/hstrings/strings.go:41:		String			0.0%
+github.com/gohugoio/hugo/common/hstrings/strings.go:45:		Eq			100.0%
+github.com/gohugoio/hugo/common/hstrings/strings.go:60:		EqualAny		100.0%
+github.com/gohugoio/hugo/common/hstrings/strings.go:81:		getOrCompileRegexp	81.8%
+github.com/gohugoio/hugo/common/hstrings/strings.go:102:	get			100.0%
+github.com/gohugoio/hugo/common/hstrings/strings.go:109:	set			100.0%
+github.com/gohugoio/hugo/common/hstrings/strings.go:120:	GetOrCompileRegexp	100.0%
+github.com/gohugoio/hugo/common/hstrings/strings.go:126:	InSlice			100.0%
+github.com/gohugoio/hugo/common/hstrings/strings.go:145:	InSlicEqualFold		100.0%
+github.com/gohugoio/hugo/common/hstrings/strings.go:165:	ToString		100.0%
+github.com/gohugoio/hugo/common/hstrings/strings.go:221:	reachedBranch		100.0%
+github.com/gohugoio/hugo/common/hstrings/strings.go:227:	getAnalysis		0.0%
+total:								(statements)		76.1%
