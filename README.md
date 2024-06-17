@@ -55,11 +55,14 @@ go tool cover -html .cover.out
 From the html GUI we were able to identify which packages / files lacked ***statement coverage*** and consequently thos that also lacked ***branch coverage***.
 We chose to improve coverage of the package `hstrings` with file `strings.go`.
 
-##### Statement Coverage
+##### Statement Coverage Before Improvements
 
-Statement coverage ([complete file](covers/initial/cover_list.txt)):
+Total statement coverage [[complete file](covers/initial/cover_list.txt)]:
 ![](readme_images/total_statement_coverage.png)
 
+&nbsp;  
+Statement coverage for package `hstrings` [[file]()]:
+![](readme_images/statement_coverage_list_before_hstrings.png)
 
 
 
@@ -715,7 +718,7 @@ We went from *0* (*0%*) to *3/3* (*100%*) branches covered. The function takes m
 
 Before:
 
-![](readme_images/IsInt_isUint_Coverage_before.png)
+![](readme_images/isInt_IsUint_Coverage_before.png)
 
 </br>
 After:
@@ -770,11 +773,39 @@ We went from *0* (*0%*) to *3/3* (*100%*) branches covered. The function gets an
 
 Before:
 
-![](readme_images/IsInt_isUint_Coverage_before.png)
+![](readme_images/isInt_IsUint_Coverage_before.png)
 
 </br>
 After:
-![](readme_images/IsUnit_Coverage_After.png)
+
+![](readme_images/isUnit_Coverage_After.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 &nbsp;  
@@ -785,10 +816,39 @@ _______
 &nbsp;  
 ## Overall
 
-<Provide a screenshot of the old coverage results by running an existing tool (the same as you already showed above)>
 
-<Provide a screenshot of the new coverage results by running the existing tool using all test modifications made by the group>
+### Package ``hstrings``
 
+Statement coverage before improvements [[file](common/hstrings/original_cover/statement_cover_list.txt)].
+![](readme_images/statement_coverage_list_before_hstrings.png)
+
+&nbsp;  
+Statement coverage after improvements [[file](common/hstrings/statement_cover_list.txt)]:
+![](readme_images/statement_coverage_list_after_hstrings.png)
+
+
+
+&nbsp;  
+### Package `` ``
+>***ADD SECTION***
+
+Statement coverage before improvements [[file]()].
+![]()
+
+&nbsp;  
+Statement coverage after improvements [[file]()]:
+![]()
+
+
+&nbsp;  
+### All Packages
+Statement coverage before improvements [[complete file](common/hstrings/original_cover/statement_cover_list.txt)].
+![](readme_images/total_statement_coverage.png)
+
+&nbsp;  
+Statement coverage after improvements [[complete file](covers/final/statement_cover_list.txt)]:
+![](readme_images/total_statement_coverage_after.png)
+>***REMEMBER:*** The project has more than 200.000 lines of code.
 
 
 
