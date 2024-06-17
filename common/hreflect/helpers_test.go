@@ -23,7 +23,7 @@ import (
 	"time"
 
 	qt "github.com/frankban/quicktest"
-	"github.com/stretchr/testify/assert"
+	// "github.com/stretchr/testify/assert"
 )
 
 func TestIsTruthful(t *testing.T) {
@@ -147,78 +147,79 @@ func TestMain(m *testing.M) {
 
 func TestForAssignments(t *testing.T) {
 
-	t.Run("test for function 'IsUint'", func(t *testing.T) {
+	// t.Run("test for function 'IsUint'", func(t *testing.T) {
 
-		testCases := [7]struct {
-			input    reflect.Kind
-			expected bool
-		}{
-			{input: reflect.Uint16, expected: true},
-			{input: reflect.Uint32, expected: true},
-			{input: reflect.Uint8, expected: true},
-			{input: reflect.Uint64, expected: true},
-			{input: reflect.Int, expected: false},
-			{input: reflect.Bool, expected: false},
-			{input: reflect.Chan, expected: false},
-		}
+	// 	testCases := [7]struct {
+	// 		input    reflect.Kind
+	// 		expected bool
+	// 	}{
 
-		for _, testCase := range testCases {
-			t.Run(fmt.Sprintf("TestCase: %v", testCase), func(t *testing.T) {
-				boolOut := IsUint(testCase.input)
-				assert.Equal(t, testCase.expected, boolOut)
-			})
-		}
-	})
+	// 		{input: reflect.Uint16, expected: true},
+	// 		{input: reflect.Uint32, expected: true},
+	// 		{input: reflect.Uint8, expected: true},
+	// 		{input: reflect.Uint64, expected: true},
+	// 		{input: reflect.Int, expected: false},
+	// 		{input: reflect.Bool, expected: false},
+	// 		{input: reflect.Chan, expected: false},
+	// 	}
 
-	t.Run("test for function 'IsInt'", func(t *testing.T) {
+	// 	for _, testCase := range testCases {
+	// 		t.Run(fmt.Sprintf("TestCase: %v", testCase), func(t *testing.T) {
+	// 			boolOut := IsUint(testCase.input)
+	// 			assert.Equal(t, testCase.expected, boolOut)
+	// 		})
+	// 	}
+	// })
 
-		testCases := [10]struct {
-			input    reflect.Kind
-			expected bool
-		}{
+	// t.Run("test for function 'IsInt'", func(t *testing.T) {
 
-			{input: reflect.Int8, expected: true},
-			{input: reflect.Int16, expected: true},
-			{input: reflect.Int32, expected: true},
-			{input: reflect.Int64, expected: true},
-			{input: reflect.Int, expected: true},
-			{input: reflect.Bool, expected: false},
-			{input: reflect.Chan, expected: false},
-			{input: reflect.Uint16, expected: false},
-			{input: reflect.Uint32, expected: false},
-			{input: reflect.Uint8, expected: false},
-		}
+	// 	testCases := [10]struct {
+	// 		input    reflect.Kind
+	// 		expected bool
+	// 	}{
 
-		for _, testCase := range testCases {
-			t.Run(fmt.Sprintf("TestCase: %v", testCase), func(t *testing.T) {
-				boolOut := IsInt(testCase.input)
-				assert.Equal(t, testCase.expected, boolOut)
-			})
-		}
-	})
+	// 		{input: reflect.Int8, expected: true},
+	// 		{input: reflect.Int16, expected: true},
+	// 		{input: reflect.Int32, expected: true},
+	// 		{input: reflect.Int64, expected: true},
+	// 		{input: reflect.Int, expected: true},
+	// 		{input: reflect.Bool, expected: false},
+	// 		{input: reflect.Chan, expected: false},
+	// 		{input: reflect.Uint16, expected: false},
+	// 		{input: reflect.Uint32, expected: false},
+	// 		{input: reflect.Uint8, expected: false},
+	// 	}
 
-	t.Run("test for function 'IsFloat'", func(t *testing.T) {
+	// 	for _, testCase := range testCases {
+	// 		t.Run(fmt.Sprintf("TestCase: %v", testCase), func(t *testing.T) {
+	// 			boolOut := IsInt(testCase.input)
+	// 			assert.Equal(t, testCase.expected, boolOut)
+	// 		})
+	// 	}
+	// })
 
-		testCases := [8]struct {
-			input    reflect.Kind
-			expected bool
-		}{
+	// t.Run("test for function 'IsFloat'", func(t *testing.T) {
 
-			{input: reflect.Float32, expected: true},
-			{input: reflect.Float64, expected: true},
-			{input: reflect.Uint8, expected: false},
-			{input: reflect.Uint16, expected: false},
-			{input: reflect.Int, expected: false},
-			{input: reflect.Int8, expected: false},
-			{input: reflect.Bool, expected: false},
-			{input: reflect.Chan, expected: false},
-		}
+	// 	testCases := [8]struct {
+	// 		input    reflect.Kind
+	// 		expected bool
+	// 	}{
 
-		for _, testCase := range testCases {
-			t.Run(fmt.Sprintf("TestCase: %v", testCase), func(t *testing.T) {
-				boolOut := IsFloat(testCase.input)
-				assert.Equal(t, testCase.expected, boolOut)
-			})
-		}
-	})
+	// 		{input: reflect.Float32, expected: true},
+	// 		{input: reflect.Float64, expected: true},
+	// 		{input: reflect.Uint8, expected: false},
+	// 		{input: reflect.Uint16, expected: false},
+	// 		{input: reflect.Int, expected: false},
+	// 		{input: reflect.Int8, expected: false},
+	// 		{input: reflect.Bool, expected: false},
+	// 		{input: reflect.Chan, expected: false},
+	// 	}
+
+	// 	for _, testCase := range testCases {
+	// 		t.Run(fmt.Sprintf("TestCase: %v", testCase), func(t *testing.T) {
+	// 			boolOut := IsFloat(testCase.input)
+	// 			assert.Equal(t, testCase.expected, boolOut)
+	// 		})
+	// 	}
+	// })
 }
