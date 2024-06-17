@@ -304,7 +304,7 @@ t.Run("test for function 'Eq'", func(t *testing.T) {
 ![](readme_images/verbose_tests_strings_alessio.png)
 
 &nbsp;  
-###### Coverage Improvements
+###### Coverage Results After Improvements
 Considering only these 2 functions, we went from *1/6* (*16.67%*) to *6/6* (*100%*) branches covered. Improving these 2 functions branch coverage concerned about passing parameter of different types. By defining test cases with parameter of type `string`, `Stringer` and a third different type (in our case `int`), we were able to reach all branches.
 ![](readme_images/strings_coverage_after_alessio.png)
 ![](readme_images/ToString_statement_coverage_after.png)
