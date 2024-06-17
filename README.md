@@ -9,7 +9,7 @@
 
 ![](readme_images/lines_of_code.png)
 
-##### Programming language (for test purposes): *Golang*
+##### Programming language (for test purposes): <span style="color: blue;">*Golang*</span>
 
 
 
@@ -319,7 +319,7 @@ ___
 ___
 
 &nbsp;  
-### Norah
+## Norah
 ###### Setting Up
 
 **Function 1:** `EqualAny` &nbsp;  
@@ -373,6 +373,7 @@ var ba = BranchAnalyzer{
 	},
 }
 ```
+
 and added flags in the function ([commit](https://github.com/T0mexX/hugo-sep/commit/97fc43e4f2f34f6b962e3d3f7fb4d5efacb2242e)):
 ```go
 // IsFloat returns whether the given kind is a float.
@@ -391,19 +392,134 @@ func IsFloat(kind reflect.Kind) bool {
 &nbsp;
 ###### Coverage Result Before Improvements
 
-**Function 1:** `EqualAny` &nbsp;
+**Function 1:** `EqualAny` &nbsp;  
+**File:** `common/hstrings/strings.go`
 As we can see, the branch coverage was 0%:
 
 ![](readme_images/EqualAny_Coverage_Before.png)
 
 
 
-**Function 2:** `IsFloat` &nbsp; 
+&nbsp;
+**Function 2:** `IsFloat` &nbsp;
+**File:** `common/hreflect/helpers.go` 
 As we can see, the branch coverage was 0%:
 
 ![](readme_images/IsFloat_Coverage_Before.png)
 
 &nbsp;
+
+
+###### Tests Implementation
+
+**Function 1:** `EqualAny` &nbsp;  
+**File:** `common/hstrings/strings.go`
+
+```go
+t.Run("test for function 'EqualAny'", func (t *testing.T) {
+	testCases:= [5]struct {
+		input1 string
+		input2 string
+		input3 string
+		input4 string
+		expected bool
+	} {
+		{input1: "random1", input2: "random1", expected: true},
+		{input1: "random1", input2: "raandom", input3: "random1", input4: "random2", expected: true},
+		{input1: "raandom1", input2: "raandom", input3: "random1", input4: "random2", expected: false},
+		{input1: "random1", input2: "1", input3: "2", input4:"3", expected: false},
+		{input1: "random1", input2: "random1", input3: "2", input4:"3", expected: true},
+	}
+
+	for _, testCase := range testCases {
+		t.Run(fmt.Sprintf("TestCase: %v", testCase), func (t *testing.T) {
+			boolOut := EqualAny(testCase.input1, testCase.input2, testCase.input3, testCase.input4)
+			assert.Equal(t, testCase.expected, boolOut)
+		})
+	}
+})
+```
+
+
+
+&nbsp;
+**Function 2:** `IsFloat` &nbsp;
+**File:** `common/hreflect/helpers.go` 
+
+```go
+t.Run("test for function 'IsFloat'", func(t *testing.T) {
+
+	testCases := [8]struct {
+		input    reflect.Kind
+		expected bool
+	}{
+
+		{input: reflect.Float32, expected: true},
+		{input: reflect.Float64, expected: true},
+		{input: reflect.Uint8, expected: false},
+		{input: reflect.Uint16, expected: false},
+		{input: reflect.Int, expected: false},
+		{input: reflect.Int8, expected: false},
+		{input: reflect.Bool, expected: false},
+		{input: reflect.Chan, expected: false},
+	}
+
+	for _, testCase := range testCases {
+		t.Run(fmt.Sprintf("TestCase: %v", testCase), func(t *testing.T) {
+			boolOut := IsFloat(testCase.input)
+			assert.Equal(t, testCase.expected, boolOut)
+		})
+	}
+})
+```
+
+###### Tests Results
+
+**Function 1:** `EqualAny` &nbsp;  
+**File:** `common/hstrings/strings.go`
+
+![](readme_images/verbose_tests_equalAny.png)
+
+
+
+&nbsp;
+**Function 2:** `IsFloat` &nbsp;
+**File:** `common/hreflect/helpers.go`
+
+![](readme_images/verbose_tests_isFloat.png)
+
+
+&nbsp;
+&nbsp;
+###### Coverage Improvements
+
+**Function 1:** `EqualAny` &nbsp;  
+**File:** `common/hstrings/strings.go`
+
+We went from *0* (*0%*) to *3/3* (*100%*) branches covered. The function takes multiple strings as parameter and checks if the first string provided is equal to any of the other input strings. To test the function we made a few test cases that check, given some input strings, if the return value is as expected.
+
+![](readme_images/EqualAny_Coverage_Before.png)
+
+&nbsp;
+![](readme_images/EqualAny_Coverage_After.png)
+
+
+
+&nbsp;
+**Function 2:** `IsFloat` &nbsp;
+**File:** `common/hreflect/helpers.go`
+
+We went from *0* (*0%*) to *3/3* (*100%*) branches covered. The function gets an input and then checks if, the given parameter, is of type `Float`. To test the function we made a few test cases that check, given different input types (`Uint`, `String`, `Bool`, `Int`, `Chan` and `Float`), that the outcome is as expected (ex: Uint8 -> False, Float8 -> True).
+
+Before:
+
+![](readme_images/IsFloat_Coverage_Before.png)
+
+</br>
+After:
+
+![](readme_images/IsFloat_Coverage_After.png)
+
 ___
 &nbsp; 
 >### Extra functions
@@ -565,104 +681,33 @@ ___
 
 &nbsp;
 ### Norah
-
 ##### Function 1: `EqualAny` ([commit](https://github.com/T0mexX/hugo-sep/commit/95a766930486ea4433912cd7bad2480c1df21ba1))
 
-```go
-t.Run("test for function 'EqualAny'", func (t *testing.T) {
-	testCases:= [5]struct {
-		input1 string
-		input2 string
-		input3 string
-		input4 string
-		expected bool
-	} {
-		{input1: "random1", input2: "random1", expected: true},
-		{input1: "random1", input2: "raandom", input3: "random1", input4: "random2", expected: true},
-		{input1: "raandom1", input2: "raandom", input3: "random1", input4: "random2", expected: false},
-		{input1: "random1", input2: "1", input3: "2", input4:"3", expected: false},
-		{input1: "random1", input2: "random1", input3: "2", input4:"3", expected: true},
-	}
-
-	for _, testCase := range testCases {
-		t.Run(fmt.Sprintf("TestCase: %v", testCase), func (t *testing.T) {
-			boolOut := EqualAny(testCase.input1, testCase.input2, testCase.input3, testCase.input4)
-			assert.Equal(t, testCase.expected, boolOut)
-		})
-	}
-})
-```
-
-
-&nbsp;
-&nbsp;
 ###### Tests Results
-![](readme_images/verbose_tests_equalAny.png)
 
 
 &nbsp;
 &nbsp;
 ###### Coverage improvement
-We went from *0* (*0%*) to *3/3* (*100%*) branches covered. The function takes multiple strings as parameter and checks if the first string provided is equal to any of the other input strings. To test the function we made a few test cases that check, given some input strings, if the return value is as expected.
 
-![](readme_images/EqualAny_Coverage_Before.png)
-
-&nbsp;  
-![](readme_images/EqualAny_Coverage_After.png)
 
 
 
 &nbsp;
 ##### Function 2: `isFloat` ([commit](https://github.com/T0mexX/hugo-sep/commit/97fc43e4f2f34f6b962e3d3f7fb4d5efacb2242e))
 
-```go
-t.Run("test for function 'IsFloat'", func(t *testing.T) {
 
-	testCases := [8]struct {
-		input    reflect.Kind
-		expected bool
-	}{
-
-		{input: reflect.Float32, expected: true},
-		{input: reflect.Float64, expected: true},
-		{input: reflect.Uint8, expected: false},
-		{input: reflect.Uint16, expected: false},
-		{input: reflect.Int, expected: false},
-		{input: reflect.Int8, expected: false},
-		{input: reflect.Bool, expected: false},
-		{input: reflect.Chan, expected: false},
-	}
-
-	for _, testCase := range testCases {
-		t.Run(fmt.Sprintf("TestCase: %v", testCase), func(t *testing.T) {
-			boolOut := IsFloat(testCase.input)
-			assert.Equal(t, testCase.expected, boolOut)
-		})
-	}
-})
-```
 
 
 &nbsp;
 &nbsp;
 ###### Tests Results
 
-![](readme_images/verbose_tests_isFloat.png)
-
 
 &nbsp;
 &nbsp;
 ###### Coverage improvement
-We went from *0* (*0%*) to *3/3* (*100%*) branches covered. The function gets an input and then checks if, the given parameter, is of type `Float`. To test the function we made a few test cases that check, given different input types (`Uint`, `String`, `Bool`, `Int`, `Chan` and `Float`), that the outcome is as expected (ex: Uint8 -> False, Float8 -> True).
 
-Before:
-
-![](readme_images/IsFloat_Coverage_Before.png)
-
-</br>
-After:
-
-![](readme_images/IsFloat_Coverage_After.png)
 
 
 ___
