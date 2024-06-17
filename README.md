@@ -1,6 +1,9 @@
 
 # Report for Assignment 1
-*** ADD SOMETHING TO FILL THE GAP***
+###### Group Members
+- Alessio Leonardo Tomei (lto223)
+- Marco Trapasso (mtr237)
+- Norah Elisabeth Milanesi (nmi245)
 
 ## Project chosen: [HUGO](https://github.com/gohugoio/hugo)
 
