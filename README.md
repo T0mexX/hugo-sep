@@ -232,7 +232,7 @@ var ba = BranchAnalyzer{
 ```
 
 &nbsp;  
-***Function1:*** `ToString` &nbsp;  
+***Function 1:*** `ToString` &nbsp;  
 ***File:*** `common/hstrings/strings.go`
 
 ```go
@@ -252,7 +252,7 @@ func ToString(v any) (string, bool) {
 ```
 
 &nbsp;  
-***Function2:*** `Eq` &nbsp;  
+***Function 2:*** `Eq` &nbsp;  
 ***File:*** `common/hstrings/strings.go`
 
 ```go
@@ -288,7 +288,7 @@ func (si StringerImplementation) String() string { return si.str }
 ```
 
 &nbsp;  
-***Function1:*** `ToString` [[commit](https://github.com/T0mexX/hugo-sep/commit/69cc0189e4c4f6af55c2d58bac4af44fc2495ac5)]&nbsp;  
+***Function 1:*** `ToString` [[commit](https://github.com/T0mexX/hugo-sep/commit/69cc0189e4c4f6af55c2d58bac4af44fc2495ac5)]&nbsp;  
 ***File:*** `common/hstrings/strings.go`
 
 ```go
@@ -318,7 +318,7 @@ t.Run("test for function 'ToString'", func(t *testing.T) {
 ```
 &nbsp;  
 
-***Function2:*** `Eq` [[commit](https://github.com/T0mexX/hugo-sep/commit/ef6119620725c841ea83af37731adf627bbde815)]&nbsp;  
+***Function 2:*** `Eq` [[commit](https://github.com/T0mexX/hugo-sep/commit/ef6119620725c841ea83af37731adf627bbde815)]&nbsp;  
 ***File:*** `common/hstrings/strings.go`
 
 ```go
@@ -379,7 +379,7 @@ var ba = BranchAnalyzer{
 }
 ```
 &nbsp;  
-***Function1:*** `InSlice`           
+***Function 1:*** `InSlice`           
 ***File:*** `common/hstrings/strings.go`
 
 ```go
@@ -400,7 +400,7 @@ func  InSlice(arr []string, el string) bool {
 }
 ```
 &nbsp;  
-***Function2:*** `InSliceEqualFold`      
+***Function 2:*** `InSliceEqualFold`      
 ***File:*** `common/hstrings/strings.go`
 ```go
 func  InSlicEqualFold(arr []string, el string) bool {
@@ -449,7 +449,7 @@ By running the built-in go tools, we check the statement coverage of the functio
 
 &nbsp;  
 ###### Tests
-***Function1:*** `InSlice` [[commit](https://github.com/gohugoio/hugo/commit/6f60dc6125af5db5f8221185e82453280c7250ae)].    
+***Function 1:*** `InSlice` [[commit](https://github.com/gohugoio/hugo/commit/6f60dc6125af5db5f8221185e82453280c7250ae)].    
 ***File:*** `common/hstrings/strings.go`
 ```go
 
@@ -476,7 +476,7 @@ t.Run("test for function 'InSlice'", func(t *testing.T) {
 })
 ```
 &nbsp;   
-***Function2:*** `InSliceEqualFold` [[commit](https://github.com/gohugoio/hugo/commit/6f60dc6125af5db5f8221185e82453280c7250ae)].  
+***Function 2:*** `InSliceEqualFold` [[commit](https://github.com/gohugoio/hugo/commit/6f60dc6125af5db5f8221185e82453280c7250ae)].  
 ***File:*** `common/hstrings/strings.go`
 
 ```go
