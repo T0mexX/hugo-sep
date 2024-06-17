@@ -417,6 +417,7 @@ func IsFloat(kind reflect.Kind) bool {
 As we can see, the branch coverage was 0%:
 
 ![](readme_images/EqualAny_Coverage_Before.png)
+![](readme_images/EqualAny_statement_coverage.png)
 
 
 &nbsp;  
@@ -426,6 +427,7 @@ As we can see, the branch coverage was 0%:
 As we can see, the branch coverage was 0%:
 
 ![](readme_images/IsFloat_Coverage_Before.png)
+![](readme_images/IsFloat_statement_coverage.png)
 
 &nbsp;
 
@@ -514,6 +516,7 @@ We went from *0* (*0%*) to *3/3* (*100%*) branches covered. The function takes m
 
 
 ![](readme_images/EqualAny_Coverage_After.png)
+![](readme_images/EqualAny_statement_coverage_after.png)
 
 
 
@@ -525,6 +528,7 @@ We went from *0* (*0%*) to *3/3* (*100%*) branches covered. The function gets an
 
 
 ![](readme_images/IsFloat_Coverage_After.png)
+![](readme_images/IsFloat_statement_coverage_after.png)
 
 ___
 &nbsp; 
@@ -589,8 +593,11 @@ func IsUint(kind reflect.Kind) bool {
 As we can see, the branch coverage for both of the functions was 0%:
 
 ![](readme_images/isInt_IsUint_Coverage_before.png)
+![](readme_images/IsInt_statement_coverage.png)
+![](readme_images/IsUint_statement_coverage.png)
 
 
+&nbsp;  
 ###### Tests
 
 
@@ -678,6 +685,7 @@ t.Run("test for function 'IsUint'", func(t *testing.T) {
 We went from *0* (*0%*) to *3/3* (*100%*) branches covered. The function takes multiple strings as parameter and checks if the first string provided is equal to any of the other input strings. To test the function we made a few test cases that check, given some input strings, if the return value is as expected.
 
 ![](readme_images/isInt_Coverage_After.png)
+![](readme_images/IsInt_statement_coverage_after.png)
 
 
 &nbsp;     
@@ -687,7 +695,8 @@ We went from *0* (*0%*) to *3/3* (*100%*) branches covered. The function takes m
 We went from *0* (*0%*) to *3/3* (*100%*) branches covered. The function gets an input and then checks if, the given parameter, is of type `Float`. To test the function we made a few test cases that check, given different input types (`Uint`, `String`, `Bool`, `Int`, `Chan` and `Float`), that the outcome is as expected (ex: Uint8 -> False, Float8 -> True).
 
 
-![](readme_images/IsUnit_Coverage_After.png)
+![](readme_images/isUnit_Coverage_After.png)
+![](readme_images/IsUint_statement_coverage_after.png)
 
 &nbsp;  
 &nbsp;
