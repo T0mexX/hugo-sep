@@ -174,10 +174,6 @@ func TestMain(m *testing.M) {
 &nbsp;  
 
 ### Alessio
-
-
-
-&nbsp;  
 ###### Setting Up
 We set up our `BranchAnalyzer` and tests [[commit]([text](https://github.com/T0mexX/hugo-sep/commit/b2c03cb40f90bf92bbbe7aae49b229a3927ee393))].
 ```go
