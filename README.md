@@ -860,4 +860,15 @@ Statement coverage after improvements [[complete file](covers/final/statement_co
 
 ## Statement of individual contributions
 
-<Write what each group member did>
+#### Alessio
+- Improved coverage for functions `ToString` and `Eq` in file `common/hstrings/strings.go`.
+- Added the readme sections related to the above mentioned functions.
+
+#### Marco
+- TODO
+- TODO
+
+#### Norah
+- TODO
+- TODO
+
