@@ -70,6 +70,11 @@ Total statement coverage [[complete file](covers/initial/cover_list.txt)]:
 Statement coverage for package `hstrings` [[file]()]:
 ![](readme_images/statement_coverage_list_before_hstrings.png)
 
+&nbsp;  
+Statement coverage for package `hreflect` [[file]()]:
+![](readme_images/statement_coverage_list_before_hreflect.png)
+
+
 
 
 
