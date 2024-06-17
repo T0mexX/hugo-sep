@@ -715,12 +715,12 @@ We went from *0* (*0%*) to *3/3* (*100%*) branches covered. The function takes m
 
 Before:
 
-![](readme_images/IsInt_isUint_Coverage_before.png)
+![](readme_images/isInt_isUint_Coverage_before.png)
 
 </br>
 After:
 
-![](readme_images/IsInt_Coverage_After.png)
+![](readme_images/isInt_Coverage_After.png)
 
 
 
@@ -770,12 +770,12 @@ We went from *0* (*0%*) to *3/3* (*100%*) branches covered. The function gets an
 
 Before:
 
-![](readme_images/IsInt_isUint_Coverage_Before.png)
+![](readme_images/isInt_isUint_Coverage_Before.png)
 
 </br>
 After:
 
-![](readme_images/IsUnit_Coverage_After.png)
+![](readme_images/isUnit_Coverage_After.png)
 
 
 &nbsp;  
