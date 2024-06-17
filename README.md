@@ -276,7 +276,7 @@ func EqualAny(a string, b ...string) bool {
 
 
 &nbsp;
-**Function2:** `IsFloat` &nbsp;  
+**Function 2:** `IsFloat` &nbsp;
 **File:** `common/hreflect/helpers.go`
 
 We set up our `BranchAnalyzer` for `common/hreflect/helpers.go` ([commit](https://github.com/T0mexX/hugo-sep/commit/fd3a355808d73476661b655fafe999ec984622a5)):
@@ -315,7 +315,7 @@ As we can see, the branch coverage was 0%:
 ![](readme_images/EqualAny_Coverage_Before.png)
 
 
-&nbsp;
+
 **Function 2:** `IsFloat` &nbsp; 
 As we can see, the branch coverage was 0%:
 
@@ -343,7 +343,6 @@ var ba = BranchAnalyzer{
 ```
 
 
-&nbsp;
 **Function 1:** `IsInt` &nbsp;  
 **File:** `common/hreflect/helpers.go`
 
@@ -364,7 +363,6 @@ func IsInt(kind reflect.Kind) bool {
 ```
 
 
-&nbsp;
 **Function 2:** `IsUint` &nbsp;  
 **File:** `common/hreflect/helpers.go`
 
@@ -559,7 +557,7 @@ func  InSlicEqualFold(arr []string, el string) bool {
 ___
 
 &nbsp;
-### Norah
+>### Norah
 
 ##### Function 1: `EqualAny` ([commit](https://github.com/T0mexX/hugo-sep/commit/95a766930486ea4433912cd7bad2480c1df21ba1))
 
@@ -605,7 +603,7 @@ Before:
 
 ![](readme_images/EqualAny_Coverage_Before.png)
 
-&nbsp;
+<br>
 After:
 
 ![](readme_images/EqualAny_Coverage_After.png)
@@ -656,9 +654,10 @@ t.Run("test for function 'IsFloat'", func(t *testing.T) {
 We went from *0* (*0%*) to *3/3* (*100%*) branches covered. The function gets an input and then checks if, the given parameter, is of type `Float`. To test the function we made a few test cases that check, given different input types (`Uint`, `String`, `Bool`, `Int`, `Chan` and `Float`), that the outcome is as expected (ex: Uint8 -> False, Float8 -> True).
 
 Before:
+
 ![](readme_images/IsFloat_Coverage_Before.png)
 
-&nbsp;
+<br>
 After:
 ![](readme_images/IsFloat_Coverage_After.png)
 
@@ -666,7 +665,7 @@ After:
 ___
 
 &nbsp; 
-### Extra functions
+>### Extra functions
 
 ##### Function 1: `IsInt` ([commit](https://github.com/T0mexX/hugo-sep/commit/97fc43e4f2f34f6b962e3d3f7fb4d5efacb2242e))
 
@@ -717,7 +716,7 @@ Before:
 
 ![](readme_images/IsInt_isUint_Coverage_before.png)
 
-&nbsp;
+</br>
 After:
 
 ![](readme_images/IsInt_Coverage_After.png)
@@ -772,7 +771,7 @@ Before:
 
 ![](readme_images/IsInt_isUint_Coverage_Before.png)
 
-&nbsp;
+<br>
 After:
 
 ![](readme_images/IsUnit_Coverage_After.png)
